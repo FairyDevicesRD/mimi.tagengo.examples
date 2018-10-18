@@ -6,7 +6,7 @@
     - [配布元] : https://search.maven.org/artifact/com.google.code.gson/gson/2.8.5/jar
 2. [mimi Developer Console](https://console.mimi.fd.ai/)にて取得した`client_id`および`client_secret`を`config.json.sample`内に記載し、`config.json`という名前で保存します。
 
-## ビルド手順
+## ビルド・実行手順
 
 ```
 $ mkdir bin
