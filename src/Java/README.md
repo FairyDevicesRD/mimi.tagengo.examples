@@ -31,5 +31,5 @@ static final String clientSecret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 3. 以下のコマンドで、ビルド・実行を行います。
 
 ```
-$ gradle build
+$ ./gradlew build
 $ java -classpath build/libs/mimi.prism-1.0.jar:lib/gson-2.8.5.jar Main
