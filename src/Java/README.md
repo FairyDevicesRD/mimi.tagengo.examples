@@ -6,6 +6,7 @@
 ### インポート手順
 
 IntelliJ IDEA から `mimi.tagengo.example/src/Java/TagengoExample` ディレクトリをインポートします。
+`Import Project` -> `Import project from external model (Gradle)`  -> `Finish`
 
 ### 実行手順
 1. `[ProjectRoot]/src/main/java/Main.java` ファイルを開き、Main クラス内 にある下記変数を 予め配布された`アプリケーションID`、 `アプリケーションシークレット` で置き換えます。
@@ -32,4 +33,4 @@ static final String clientSecret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
 ```
 $ ./gradlew build
-$ java -classpath build/libs/mimi.prism-1.0.jar:lib/gson-2.8.5.jar Main
+$ java -classpath lib/gson-2.8.5.jar:build/classes/java/main Main
