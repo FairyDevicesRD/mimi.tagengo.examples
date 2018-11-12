@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TagengoExampleApp</string>
+    <string name="sr_button_off">音声認識</string>
+    <string name="sr_button_on">音声認識(再度タップで終了)</string>
+    <string name="mt_button">翻訳</string>
+    <string name="ss_button">音声合成</string>
+</resources>

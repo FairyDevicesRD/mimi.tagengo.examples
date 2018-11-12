@@ -1,0 +1,82 @@
+package ai.fd.mimi.prism;
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.*;
+import java.net.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class SpeechSynthesizer {
+    String accessToken = "";
+
+    protected SpeechSynthesizer(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    protected ResponseData synthesize(RequestData requestData) throws ClientComCtrlExcepiton, IOException {
+
+        HttpsURLConnection connection = null;
+        ArrayList<byte[]> binaryData = null;
+
+        URL host = new URL("https://sandbox-ss.mimi.fd.ai/speech_synthesis");
+        connection = (HttpsURLConnection) host.openConnection();
+
+        Map<String, String> params = new LinkedHashMap<>();
+        //================================
+        // required
+        params.put("text", requestData.sentence);
+        params.put("engine", "nict");
+        params.put("lang", requestData.language);
+        //================================
+        // optional
+        params.put("audio_format", requestData.outputAudioFormatAudio);
+        params.put("audio_endian", requestData.outputAudioFormatEndian);
+        params.put("gender", requestData.voiceGender.toLowerCase());
+        params.put("age", requestData.voiceAge);
+        //================================
+        StringBuilder postData = new StringBuilder();
+        for (Map.Entry<String, String> param : params.entrySet()) {
+            if (postData.length() != 0) postData.append('&');
+            postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+            postData.append('=');
+            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+        }
+        byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Authorization", "Bearer " + accessToken);
+        connection.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+        connection.setDoOutput(true);
+        connection.getOutputStream().write(postDataBytes);
+        connection.connect();
+
+        final int status = connection.getResponseCode();
+        if (status == HttpsURLConnection.HTTP_OK) {
+            String response = connection.getResponseMessage();
+            //System.out.println("[response] code:" + status + " " + connection.getResponseMessage());
+
+            // 音声バイナリを取得
+            binaryData = new ArrayList<byte[]>();
+            InputStream is = connection.getInputStream();
+
+            int readLen = 0;
+            byte[] readBuf = new byte[2048];
+
+            while ((readLen = is.read(readBuf, 0, readBuf.length)) != -1) {
+                byte[] data = new byte[readLen];
+                System.arraycopy(readBuf, 0, data, 0, readLen);
+                binaryData.add(data);
+            }
+        } else {
+            System.err.println("[error] code:" + status + " " + connection.getResponseMessage());
+        }
+        XMLUtil util = new XMLUtil();
+        ResponseData responseData = new ResponseData();
+        responseData.setXML(util.createResponseSS(requestData));
+        responseData.setBinaryList(binaryData);
+
+        return responseData;
+    }
+
+}
