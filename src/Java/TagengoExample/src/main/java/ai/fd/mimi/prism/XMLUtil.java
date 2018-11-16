@@ -161,12 +161,11 @@ class XMLUtil {
                                     request.voiceAge = voiceAttribute.getNamedItem("Age").getNodeValue();
                                     break;
                                 case "s":
-                                    String delimiter = node2.getAttributes().getNamedItem("Delimiter").getNodeValue();
-                                    if (delimiter.equals("")) {
+                                    Node delimiterNode = node2.getAttributes().getNamedItem("Delimiter");
+                                    if (delimiterNode == null || delimiterNode.getNodeValue().equals("")) {
                                         request.sentence = node2.getTextContent();
-                                        //System.out.println("sentence value: " + node2.getTextContent());
                                     } else {
-                                        request.sentence = node2.getTextContent().replace(delimiter, " ");
+                                        request.sentence = node2.getTextContent().replace(delimiterNode.getNodeValue(), " ");
                                     }
                                     break;
                             }
@@ -197,7 +196,7 @@ class XMLUtil {
 
             // STML/SR_OUT
             Element srOutElement = doc.createElement("SR_OUT");
-            srOutElement.setAttribute("Language", request.sourceLanguage); //SR入力音声を返す
+            srOutElement.setAttribute("Language", request.language); //SR入力音声を返す
             root.appendChild(srOutElement);
 
             // STML/SR_OUT/NBests

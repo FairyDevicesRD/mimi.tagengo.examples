@@ -1,5 +1,7 @@
 package ai.fd.mimi.prism;
 
+import com.google.gson.Gson;
+
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.*;
@@ -51,8 +53,10 @@ public class Translator {
                 //System.out.print(str);
                 stringBuilder.append(str);
             }
-            // [" "] を除去
-            result = stringBuilder.toString().replace("[\"", "").replace("\"]", "");
+            // 結果 JSON をパース
+            Gson gson = new Gson();
+            String[] results = gson.fromJson(stringBuilder.toString(),  String[].class);
+            result = String.join(" ", results);
 
         } else {
             System.err.println("[error] code:" + status + " " + connection.getResponseMessage());

@@ -18,7 +18,7 @@ public class SpeechSynthesizer {
     protected ResponseData synthesize(RequestData requestData) throws ClientComCtrlExcepiton, IOException {
 
         HttpsURLConnection connection = null;
-        ArrayList<byte[]> binaryData = null;
+        ByteArrayOutputStream binaryData = null;
 
         URL host = new URL("https://sandbox-ss.mimi.fd.ai/speech_synthesis");
         connection = (HttpsURLConnection) host.openConnection();
@@ -57,16 +57,14 @@ public class SpeechSynthesizer {
             //System.out.println("[response] code:" + status + " " + connection.getResponseMessage());
 
             // 音声バイナリを取得
-            binaryData = new ArrayList<byte[]>();
+            binaryData = new ByteArrayOutputStream();
             InputStream is = connection.getInputStream();
 
             int readLen = 0;
             byte[] readBuf = new byte[2048];
 
             while ((readLen = is.read(readBuf, 0, readBuf.length)) != -1) {
-                byte[] data = new byte[readLen];
-                System.arraycopy(readBuf, 0, data, 0, readLen);
-                binaryData.add(data);
+                binaryData.write(readBuf, 0, readLen);
             }
         } else {
             System.err.println("[error] code:" + status + " " + connection.getResponseMessage());
@@ -74,7 +72,7 @@ public class SpeechSynthesizer {
         XMLUtil util = new XMLUtil();
         ResponseData responseData = new ResponseData();
         responseData.setXML(util.createResponseSS(requestData));
-        responseData.setBinaryList(binaryData);
+        responseData.setBinary(binaryData.toByteArray());
 
         return responseData;
     }

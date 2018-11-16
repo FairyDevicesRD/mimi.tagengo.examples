@@ -175,22 +175,9 @@ class PrismClient {
                     client = new ClientComCtrl(accessToken);
                     ResponseData response = client.request(requestXML);
 
-                    int writeLen = 0;
                     //結果を再生する
                     Log.d(getClass().getName(), "SS result: " + response.getXML());
-
-                    ByteArrayOutputStream out = new ByteArrayOutputStream();
-                    for (byte[] b : response.getBinaryList()) {
-                        try {
-                            out.write(b);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        writeLen += b.length;
-                    }
-                    ssPlayer.write(out.toByteArray(), 0, out.toByteArray().length);
-
-                    Log.d("", "writeLen: " + writeLen);
+                    ssPlayer.write(response.getBinary(), 0, response.getBinary().length);
                 } catch (ClientComCtrlExcepiton | SAXException | IOException e) {
                     e.printStackTrace();
                 }
