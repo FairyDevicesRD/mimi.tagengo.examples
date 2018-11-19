@@ -32,20 +32,3 @@ interface OnReceivedSRResponseListener {
     void onReceivedSRResponse(String response);
 }
 ```
-
-
-
----
-# 旧情報
-## 準備
-
-`./lib` 配下に `gson-2.8.5.jar` を配置します。
-
-[配布元] : https://search.maven.org/artifact/com.google.code.gson/gson/2.8.5/jar
-
-## ビルド手順(社内)
-```
-$ . create_jarlib.sh
-$ java -classpath bin:lib/gson-2.8.5.jar:lib/NICTAPI.jar NICTAPISample data/AuthorizationParams.json "今日はいい天気ですね。"
-```
-
