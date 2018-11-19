@@ -49,25 +49,3 @@ $ . create_jarlib.sh
 $ java -classpath bin:lib/gson-2.8.5.jar:lib/NICTAPI.jar NICTAPISample data/AuthorizationParams.json "今日はいい天気ですね。"
 ```
 
-
-## ビルド手順(コンテスト参加者)
-```
-$ mkdir bin
-$ javac -d bin -classpath src:lib/gson-2.8.5.jar:lib/NICTAPI.jar src/NICTAPISample.java
-$ java -classpath bin:lib/gson-2.8.5.jar:lib/NICTAPI.jar NICTAPISample data/AuthorizationParams.json "今日はいい天気ですね。"
-```
-
-## 納品物
-
-納品前には `README.md`　及び `file/AuthorizationParams.json` を編集してください。
-
-```
-.
-├── README.md ※要編集
-├── data
-│   └── AuthorizationParams.json ※要編集
-├── lib
-│   └── NICTAPI.jar
-└── src
-    └── NICTAPISample.java
-```
