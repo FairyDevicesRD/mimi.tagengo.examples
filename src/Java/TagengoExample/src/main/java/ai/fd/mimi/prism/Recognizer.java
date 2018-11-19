@@ -24,7 +24,7 @@ class Recognizer {
      * @return
      * @throws ClientComCtrlExcepiton
      */
-    protected ResponseData recognize(RequestData requestData, List<byte[]> binaryDataList, int timeout) throws ClientComCtrlExcepiton, IOException {
+    protected ResponseData recognize(String url, RequestData requestData, List<byte[]> binaryDataList, int timeout) throws ClientComCtrlExcepiton, IOException {
         ArrayList<String> resultWord = null;
         String result = "";
         int dataLength = 0;
@@ -34,7 +34,7 @@ class Recognizer {
             dataLength += data.length;
         }
 
-        host = new URL("https://sandbox-sr.mimi.fd.ai");
+        host = new URL(url);
         connection = (HttpsURLConnection) host.openConnection();
 
         if (timeout != -1) {

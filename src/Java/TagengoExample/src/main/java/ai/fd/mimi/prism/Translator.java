@@ -16,10 +16,10 @@ public class Translator {
         this.accessToken = accessToken;
     }
 
-    protected ResponseData translate(RequestData requestData) throws ClientComCtrlExcepiton, IOException {
+    protected ResponseData translate(String url, RequestData requestData) throws ClientComCtrlExcepiton, IOException {
         String result;
         HttpsURLConnection connection = null;
-        URL host = new URL("https://sandbox-mt.mimi.fd.ai/machine_translation");
+        URL host = new URL(url);
         connection = (HttpsURLConnection) host.openConnection();
 
         Map<String, String> params = new LinkedHashMap<>();

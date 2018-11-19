@@ -58,6 +58,9 @@ class XMLSimpleParser {
 public class Main {
     static final String clientID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
     static final String clientSecret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+    static final String SRURL = "https://sandbox-sr.mimi.fd.ai";
+    static final String SSURL = "https://sandbox-ss.mimi.fd.ai/speech_synthesis";
+    static final String MTURL = "https://sandbox-mt.mimi.fd.ai/machine_translation";
 
     static final String SRRequestTemplate = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
             "<STML UtteranceID=\"0\" Version=\"1\">\n" +
@@ -124,9 +127,8 @@ public class Main {
             AccessTokenResponse token = gson.fromJson(stringBuilder.toString(), AccessTokenResponse.class);
             return token.accessToken;
         } else {
-            System.err.println("[error] code:" + status + " " + connection.getResponseMessage());
+            throw new IOException("[error] code: " + status + " " + connection.getResponseMessage());
         }
-        return "";
     }
 
     static ArrayList<byte[]> loadRawFile(String fileName) throws IOException {
@@ -142,15 +144,11 @@ public class Main {
         return binaryDataList;
     }
 
-    static int writeRawFile(String fileName, ArrayList<byte[]> data) throws IOException {
-        int writeLengh = 0;
+    static int writeRawFile(String fileName, byte[] data) throws IOException {
         FileOutputStream fOut = new FileOutputStream(new File(fileName));
-        for(byte[] b : data) {
-            fOut.write(b, 0, b.length);
-            writeLengh += b.length;
-        }
+        fOut.write(data);
         fOut.close();
-        return writeLengh;
+        return data.length;
     }
 
     public static void main(String[] args) throws IOException, ClientComCtrlExcepiton, SAXException, ParserConfigurationException, XPathExpressionException {
@@ -168,12 +166,12 @@ public class Main {
         final String SRRequest = String.format(SRRequestTemplate, "ja");
 
         client.setTransferEncodingChunked(true); // 分割送信モード
-        client.request(SRRequest); // XML リクエスト
+        client.request(SRURL, SRRequest); // XML リクエスト
         ArrayList<byte[]> binaryDataList = loadRawFile("data/test.raw");
         for(byte[] b : binaryDataList) {
-            client.request(b); // 複数回の音声リクエスト
+            client.request(SRURL, b); // 複数回の音声リクエスト
         }
-        response = client.request(); // リクエスト終了、結果を得る
+        response = client.request(SRURL); // リクエスト終了、結果を得る
         System.out.println("result: " + response.getXML());
         result = new XMLSimpleParser(response.getXML()).getSR_OUTSentence();
         System.out.println("result: " + result);
@@ -186,7 +184,7 @@ public class Main {
         // %s: Sentence to translate
         final String MTRequest = String.format(MTRequestTemplate, "ja", "en", result);
 
-        response = client.request(MTRequest);
+        response = client.request(MTURL, MTRequest);
         System.out.println("result: " + response.getXML());
         result = new XMLSimpleParser(response.getXML()).getMT_OUTSentence();
         System.out.println("result: " + result);
@@ -198,13 +196,10 @@ public class Main {
         // %s: Sentence to synthesize
         final String SSRequest = String.format(SSRequestTemplate, "Female", result);
 
-        response = client.request(SSRequest);
+        response = client.request(SSURL, SSRequest);
         System.out.println("result: " + response.getXML());
-        int dataLength = 0;
-        for (byte[] b : response.getBinaryList()) {
-            dataLength += b.length;
-        }
-        System.out.println("result binaty: " + dataLength + "byte");
-        writeRawFile("data/ss.raw", response.getBinaryList());
+        int dataLength = response.getBinary().length;
+        System.out.println("result binary: " + dataLength + "byte");
+        writeRawFile("data/ss.raw", response.getBinary());
     }
 }

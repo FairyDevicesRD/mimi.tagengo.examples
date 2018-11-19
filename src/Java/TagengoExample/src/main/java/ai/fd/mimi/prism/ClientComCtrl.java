@@ -3,7 +3,6 @@ package ai.fd.mimi.prism;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.ArrayList;
 
 public class ClientComCtrl {
@@ -38,11 +37,11 @@ public class ClientComCtrl {
      *
      * @return
      */
-    public ResponseData request() throws ClientComCtrlExcepiton, IOException, SAXException {
+    public ResponseData request(String url) throws ClientComCtrlExcepiton, IOException, SAXException {
         if (transferEncodingChunked) {
             Recognizer recog = new Recognizer(accessToken);
             RequestData requestData = util.parseXML(srChunkedRequestXmlData);
-            return recog.recognize(requestData, srChunkedRequestBinaryData, -1);
+            return recog.recognize(url, requestData, srChunkedRequestBinaryData, -1);
         } else {
             throw new IllegalStateException();
         }
@@ -55,7 +54,7 @@ public class ClientComCtrl {
      * @param binaryDataList
      * @return
      */
-    public ResponseData request(ArrayList<byte[]> binaryDataList) throws IOException {
+    public ResponseData request(String unusedURL, ArrayList<byte[]> binaryDataList) throws IOException {
         if(isTransferEncodingChunked()) {
             for (byte[] b : binaryDataList) {
                 srChunkedRequestBinaryData.add(b);
@@ -72,7 +71,7 @@ public class ClientComCtrl {
      * @param binaryData
      * @return
      */
-    public ResponseData request(byte[] binaryData) throws IOException {
+    public ResponseData request(String unusedURL, byte[] binaryData) throws IOException {
         if(isTransferEncodingChunked()) {
             srChunkedRequestBinaryData.add(binaryData);
         } else {
@@ -88,7 +87,7 @@ public class ClientComCtrl {
      * @param xmlData
      * @return
      */
-    public ResponseData request(String xmlData) throws ClientComCtrlExcepiton, IOException, SAXException {
+    public ResponseData request(String url, String xmlData) throws ClientComCtrlExcepiton, IOException, SAXException {
         RequestData request = util.parseXML(xmlData);
         switch (request.type) {
             case SR:
@@ -102,10 +101,10 @@ public class ClientComCtrl {
                 }
             case MT:
                 Translator translator = new Translator(accessToken);
-                return translator.translate(request);
+                return translator.translate(url, request);
             case SS:
                 SpeechSynthesizer synth = new SpeechSynthesizer(accessToken);
-                return synth.synthesize(request);
+                return synth.synthesize(url, request);
             case NONE:
             default:
         }
@@ -119,7 +118,7 @@ public class ClientComCtrl {
      * @param binaryDataList
      * @return
      */
-    public ResponseData request(String xmlData, ArrayList<byte[]> binaryDataList) throws ClientComCtrlExcepiton, IOException, SAXException {
+    public ResponseData request(String url, String xmlData, ArrayList<byte[]> binaryDataList) throws ClientComCtrlExcepiton, IOException, SAXException {
         RequestData request = util.parseXML(xmlData);
         switch (request.type) {
             case SR:
@@ -129,7 +128,7 @@ public class ClientComCtrl {
                 } else {
                     Recognizer recog = new Recognizer(accessToken);
                     RequestData requestData = util.parseXML(xmlData);
-                    return recog.recognize(requestData, binaryDataList, -1);
+                    return recog.recognize(url, requestData, binaryDataList, -1);
                 }
             case MT:
                 //MT用メソッドではない
@@ -143,11 +142,11 @@ public class ClientComCtrl {
         }
     }
 
-    public ResponseData request(String xmlData, byte[] binaryData) throws ClientComCtrlExcepiton, IOException, SAXException {
+    public ResponseData request(String url, String xmlData, byte[] binaryData) throws ClientComCtrlExcepiton, IOException, SAXException {
         if (transferEncodingChunked) {
             ArrayList<byte[]> list = new ArrayList<byte[]>();
             list.add(binaryData);
-            request(xmlData, list);
+            request(url, xmlData, list);
         } else {
             throw new IllegalStateException();
         }

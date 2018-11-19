@@ -15,12 +15,12 @@ public class SpeechSynthesizer {
         this.accessToken = accessToken;
     }
 
-    protected ResponseData synthesize(RequestData requestData) throws ClientComCtrlExcepiton, IOException {
+    protected ResponseData synthesize(String url, RequestData requestData) throws ClientComCtrlExcepiton, IOException {
 
         HttpsURLConnection connection = null;
         ByteArrayOutputStream binaryData = null;
 
-        URL host = new URL("https://sandbox-ss.mimi.fd.ai/speech_synthesis");
+        URL host = new URL(url);
         connection = (HttpsURLConnection) host.openConnection();
 
         Map<String, String> params = new LinkedHashMap<>();
