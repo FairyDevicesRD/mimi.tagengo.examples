@@ -83,7 +83,7 @@ public class Main {
     static final String SSRequestTemplate = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
             "<STML UtteranceID=\"0\" Version=\"1\">\n" +
             "<User ID=\"N/A\"/>\n" +
-            "<SS_IN Language=\"en\">\n" +
+            "<SS_IN Language=\"%s\">\n" +
             "<Voice Age=\"30\" Gender=\"%s\"/>\n" +
             "<OutputAudioFormat Audio=\"RAW\" Endian=\"Little\" SamplingFrequency=\"16k\"/>\n" +
             "<InputTextFormat Form=\"SurfaceForm\"/>\n" +
@@ -190,9 +190,10 @@ public class Main {
         // 3. SS
 
         // Placeholders:
+        // %s: Language (ja, en, id, ko, my, th, vi, zh)
         // %s: Gender (Male, Female)
         // %s: Sentence to synthesize
-        final String SSRequest = String.format(SSRequestTemplate, "Female", result);
+        final String SSRequest = String.format(SSRequestTemplate, "en", "Female", result);
 
         response = client.request(SSURL, SSRequest);
         System.out.println("result: " + response.getXML());

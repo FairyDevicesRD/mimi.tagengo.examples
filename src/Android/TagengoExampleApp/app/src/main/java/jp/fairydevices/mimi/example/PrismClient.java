@@ -124,15 +124,16 @@ class PrismClient {
                     String inputLanguage = "ja";
                     String targetLanguage = "en";
                     String text = srOutputView.getText().toString();
-                    String requestXML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
-                            "<STML xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" UtteranceID=\"1101130617\" Version=\"1.1\">\n" +
-                            "<User ID=\"test\"/>\n" +
-                            "<MT_IN Domain=\"Travel\" MaxNBest=\"1\" SourceLanguage=\"" + inputLanguage + "\" TargetLanguage=\"" + targetLanguage + "\" Task=\"Dictation\">\n" +
+                    String MTRequestTemplate = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                            "<STML UtteranceID=\"0\" Version=\"1.0\">\n" +
+                            "<User ID=\"N/A\"/>\n" +
+                            "<MT_IN SourceLanguage=\"%s\" TargetLanguage=\"%s\">\n" +
                             "<InputTextFormat Form=\"SurfaceForm\"/>\n" +
                             "<OutputTextFormat Form=\"SurfaceForm\"/>\n" +
-                            "<s>" + text + "</s>\n" +
+                            "<s>%s</s>\n" +
                             "</MT_IN>\n" +
                             "</STML>\n";
+                    String requestXML = String.format(MTRequestTemplate, inputLanguage, targetLanguage, text);
                     client = new ClientComCtrl(accessToken);
                     ResponseData response = client.request(MTURL, requestXML);
 
@@ -164,16 +165,17 @@ class PrismClient {
                     // SS をリクエスト
                     String inputLanguage = "en";
                     String text = mtOutputView.getText().toString();
-                    String requestXML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
-                            "<STML xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" UtteranceID=\"1101130633\" Version=\"1\">\n" +
-                            "<User ID=\"test\"/>\n" +
-                            "<SS_IN Language=\"" + inputLanguage + "\" Rate=\"1\" Volume=\"1\">\n" +
-                            "<Voice Age=\"30\" Gender=\"Female\" ID=\"\" Native=\"no\"/>\n" +
+                    String SSRequestTemplate = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                            "<STML UtteranceID=\"0\" Version=\"1\">\n" +
+                            "<User ID=\"N/A\"/>\n" +
+                            "<SS_IN Language=\"%s\">\n" +
+                            "<Voice Age=\"30\" Gender=\"%s\"/>\n" +
                             "<OutputAudioFormat Audio=\"RAW\" Endian=\"Little\" SamplingFrequency=\"16k\"/>\n" +
                             "<InputTextFormat Form=\"SurfaceForm\"/>\n" +
-                            "<s Delimiter=\" \">" + text + "</s>\n" +
+                            "<s Delimiter=\" \">%s</s>\n" +
                             "</SS_IN>\n" +
                             "</STML>";
+                    String requestXML = String.format(SSRequestTemplate, inputLanguage, "Female", text);
                     client = new ClientComCtrl(accessToken);
                     ResponseData response = client.request(SSURL, requestXML);
 
@@ -198,14 +200,16 @@ class PrismClient {
                 return;
             }
             String inputLanguage = "ja";
-            String requestXML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
-                    "<STML xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" UtteranceID=\"1101130600\" Version=\"1\">\n" +
-                    "<User ID=\"test\"/>\n" +
-                    "<SR_IN Domain=\"Travel\" Language=\"" + inputLanguage + "\" MaxNBest=\"1\" Task=\"Travel\">\n" +
+            String SRRequestTemplate = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                    "<STML UtteranceID=\"0\" Version=\"1\">\n" +
+                    "<User ID=\"N/A\"/>\n" +
+                    "<SR_IN Language=\"%s\">\n" +
+                    "<Voice/>\n" +
                     "<InputAudioFormat Audio=\"RAW\" Endian=\"Little\" SamplingFrequency=\"16k\"/>\n" +
                     "<OutputTextFormat Form=\"SurfaceForm\"/>\n" +
                     "</SR_IN>\n" +
                     "</STML>";
+            String requestXML = String.format(SRRequestTemplate, inputLanguage);
             ResponseData response;
             try {
                 client.request(SRURL, requestXML);
