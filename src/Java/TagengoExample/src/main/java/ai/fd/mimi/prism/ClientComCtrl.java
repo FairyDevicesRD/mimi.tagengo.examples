@@ -14,7 +14,7 @@ public class ClientComCtrl {
 
     private boolean transferEncodingChunked = false;
 
-    public ClientComCtrl(String accessToken)  {
+    public ClientComCtrl(String accessToken) {
         this.accessToken = accessToken;
         util = new XMLUtil();
     }
@@ -55,7 +55,7 @@ public class ClientComCtrl {
      * @return
      */
     public ResponseData request(String unusedURL, ArrayList<byte[]> binaryDataList) throws IOException {
-        if(isTransferEncodingChunked()) {
+        if (isTransferEncodingChunked()) {
             for (byte[] b : binaryDataList) {
                 srChunkedRequestBinaryData.add(b);
             }
@@ -72,7 +72,7 @@ public class ClientComCtrl {
      * @return
      */
     public ResponseData request(String unusedURL, byte[] binaryData) throws IOException {
-        if(isTransferEncodingChunked()) {
+        if (isTransferEncodingChunked()) {
             srChunkedRequestBinaryData.add(binaryData);
         } else {
             throw new IllegalStateException();
@@ -91,7 +91,7 @@ public class ClientComCtrl {
         RequestData request = util.parseXML(xmlData);
         switch (request.type) {
             case SR:
-                if(isTransferEncodingChunked()) {
+                if (isTransferEncodingChunked()) {
                     srChunkedRequestXmlData = xmlData;
                     srChunkedRequestBinaryData = new ArrayList<byte[]>();
                     return null;
@@ -123,7 +123,7 @@ public class ClientComCtrl {
         switch (request.type) {
             case SR:
                 if (isTransferEncodingChunked()) {
-                    // 分割SS用のメソッドではない
+                    // 分割SR用のメソッドではない
                     throw new IllegalStateException();
                 } else {
                     Recognizer recog = new Recognizer(accessToken);
@@ -143,13 +143,8 @@ public class ClientComCtrl {
     }
 
     public ResponseData request(String url, String xmlData, byte[] binaryData) throws ClientComCtrlExcepiton, IOException, SAXException {
-        if (transferEncodingChunked) {
-            ArrayList<byte[]> list = new ArrayList<byte[]>();
-            list.add(binaryData);
-            request(url, xmlData, list);
-        } else {
-            throw new IllegalStateException();
-        }
-        return null;
+        ArrayList<byte[]> list = new ArrayList<>();
+        list.add(binaryData);
+        return request(url, xmlData, list);
     }
 }
