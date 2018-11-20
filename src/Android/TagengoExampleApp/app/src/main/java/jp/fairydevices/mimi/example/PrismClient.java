@@ -29,6 +29,9 @@ class PrismClient {
 
     private static final String ID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
     private static final String SECRET = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+    private static final String SRURL = "https://sandbox-sr.mimi.fd.ai";
+    private static final String SSURL = "https://sandbox-ss.mimi.fd.ai/speech_synthesis";
+    private static final String MTURL = "https://sandbox-mt.mimi.fd.ai/machine_translation";
 
     private String accessToken = "";
     private ClientComCtrl client = null;
@@ -132,7 +135,7 @@ class PrismClient {
                             "</MT_IN>\n" +
                             "</STML>\n";
                     client = new ClientComCtrl(accessToken);
-                    ResponseData response = client.request(requestXML);
+                    ResponseData response = client.request(MTURL, requestXML);
 
                     // 結果を view に返す
                     Log.d(getClass().getName(), "MT result: " + response.getXML());
@@ -173,7 +176,7 @@ class PrismClient {
                             "</SS_IN>\n" +
                             "</STML>";
                     client = new ClientComCtrl(accessToken);
-                    ResponseData response = client.request(requestXML);
+                    ResponseData response = client.request(SSURL, requestXML);
 
                     //結果を再生する
                     Log.d(getClass().getName(), "SS result: " + response.getXML());
@@ -206,18 +209,18 @@ class PrismClient {
                     "</STML>";
             ResponseData response;
             try {
-                client.request(requestXML);
+                client.request(SRURL, requestXML);
                 // 録音終了まで 録音Queueから取り出し続ける
                 while (!taskDone) {
                     try {
                         byte[] data = recQueue.take(); // blocking
-                        client.request(data);
+                        client.request(SRURL, data);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
                 // 音声の終了を表明
-                response = client.request();
+                response = client.request(SRURL);
 
                 Log.d(getClass().getName(), "SR result: " + response.getXML());
                 // パースした結果を view に返す

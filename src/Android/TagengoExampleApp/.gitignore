@@ -102,3 +102,6 @@ local.properties
 
 #/captures
 #.externalNativeBuild
+
+.idea/misc.xml
+.idea/runConfigurations.xml
