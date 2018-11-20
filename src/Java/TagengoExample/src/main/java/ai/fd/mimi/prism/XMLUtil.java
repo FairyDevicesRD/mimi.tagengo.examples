@@ -14,9 +14,10 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
+import java.util.*;
 
 class XMLUtil {
+    private static final Set<String> SPACE_SEPARATING_LANGUAGES = Collections.unmodifiableSet(new HashSet<>(Arrays.asList("en", "fr", "es", "id", "vi")));
 
     XMLUtil() {
     }
@@ -216,7 +217,10 @@ class XMLUtil {
                     resultText.append(st[0]);
                     isFirst = false;
                 } else {
-                    resultText.append(" " + st[0]);
+                    if (SPACE_SEPARATING_LANGUAGES.contains(request.language) && !st[0].equals("") && !st[0].equals(".")) {
+                        resultText.append(' ');
+                    }
+                    resultText.append(st[0]);
                 }
             }
             sentenceElement.setTextContent(resultText.toString());
