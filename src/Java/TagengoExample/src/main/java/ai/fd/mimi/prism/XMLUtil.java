@@ -21,7 +21,7 @@ class XMLUtil {
     XMLUtil() {
     }
 
-    RequestData parseXML(String xml) throws IOException, SAXException, ClientComCtrlExcepiton {
+    RequestData parseXML(String xml) throws IOException, SAXException {
         try {
             //System.out.println("===============================");
             //System.out.println("input: " + xml);
@@ -176,14 +176,13 @@ class XMLUtil {
             }
             return request;
         } catch (NullPointerException e) {
-            e.printStackTrace();
-            throw new ClientComCtrlExcepiton("Required node(s) not found");
+            throw new IllegalArgumentException("Required node(s) not found", e);
         } catch (ParserConfigurationException e) {
-            throw new ClientComCtrlExcepiton(e.getMessage());
+            throw new RuntimeException("Exception thrown in parsing xml", e);
         }
     }
 
-    String createResponseSR(RequestData request, List<String> words) throws ClientComCtrlExcepiton {
+    String createResponseSR(RequestData request, List<String> words) {
         String result;
         try {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -232,12 +231,12 @@ class XMLUtil {
 
             result = convertString(doc);
         } catch (TransformerException | ParserConfigurationException e) {
-            throw new ClientComCtrlExcepiton(e.getMessage());
+            throw new RuntimeException("Exception thrown in creating SR response", e);
         }
         return result;
     }
 
-    String createResponseMT(RequestData request, String sentence) throws ClientComCtrlExcepiton {
+    String createResponseMT(RequestData request, String sentence) {
         String result;
         try {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -269,12 +268,12 @@ class XMLUtil {
 
             result = convertString(doc);
         } catch (TransformerException | ParserConfigurationException e) {
-            throw new ClientComCtrlExcepiton(e.getMessage());
+            throw new RuntimeException("Exception thrown in creating MT response", e);
         }
         return result;
     }
 
-    String createResponseSS(RequestData request) throws ClientComCtrlExcepiton {
+    String createResponseSS(RequestData request) {
         String result;
         try {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -298,7 +297,7 @@ class XMLUtil {
 
             result = convertString(doc);
         } catch (TransformerException | ParserConfigurationException e) {
-            throw new ClientComCtrlExcepiton(e.getMessage());
+            throw new RuntimeException("Exception thrown in creating SS response", e);
         }
         return result;
     }

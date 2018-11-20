@@ -17,7 +17,7 @@ import java.util.Map;
  * build.gradle の dependencies に以下を追記
  * implementation 'com.google.code.gson:gson:2.8.5'
  */
-class AccessToken{
+class AccessToken {
 
     String getToken(String id, String secret) throws IOException {
         URL url = new URL("https://auth.mimi.fd.ai/v2/token");
@@ -42,26 +42,19 @@ class AccessToken{
         connection.getOutputStream().write(postDataBytes);
         connection.connect();
         final int status = connection.getResponseCode();
-        if (status == HttpURLConnection.HTTP_OK) {
-            String response = connection.getResponseMessage();
-            Reader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
-            StringBuilder stringBuilder = new StringBuilder();
-            for (int c; (c = in.read()) >= 0; ) {
-                stringBuilder.append((char) c);
-            }
-            // mimi accesstokenをパース
-            Gson gson = new Gson();
-            AccessTokenSchema token = gson.fromJson(stringBuilder.toString(), AccessTokenSchema.class);
-            return token.accessToken;
-        } else {
-            System.err.println("[error] code:" + status + " " + connection.getResponseMessage());
+        if (status != HttpURLConnection.HTTP_OK) {
+            throw new IOException("[error] code: " + status + " " + connection.getResponseMessage());
         }
-        return "";
-    }
-
-    private class AuthorizationParams {
-        String client_id;
-        String client_secret;
+        String response = connection.getResponseMessage();
+        Reader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int c; (c = in.read()) >= 0; ) {
+            stringBuilder.append((char) c);
+        }
+        // mimi accesstokenをパース
+        Gson gson = new Gson();
+        AccessTokenSchema token = gson.fromJson(stringBuilder.toString(), AccessTokenSchema.class);
+        return token.accessToken;
     }
 
     private class AccessTokenSchema {

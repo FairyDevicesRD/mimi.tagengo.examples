@@ -22,9 +22,8 @@ class Recognizer {
      * @param binaryDataList
      * @param timeout        -1 : デフォルト値を使用
      * @return
-     * @throws ClientComCtrlExcepiton
      */
-    protected ResponseData recognize(String url, RequestData requestData, List<byte[]> binaryDataList, int timeout) throws ClientComCtrlExcepiton, IOException {
+    protected ResponseData recognize(String url, RequestData requestData, List<byte[]> binaryDataList, int timeout) throws IOException {
         ArrayList<String> resultWord = null;
         String result = "";
         int dataLength = 0;
@@ -64,41 +63,40 @@ class Recognizer {
 
         // レスポンスを取得
         final int status = connection.getResponseCode();
-        if (status == HttpsURLConnection.HTTP_OK) {
-            String response = connection.getResponseMessage();
-            //System.out.println("[response] code:" + status + " " + response);
-
-            Reader in = new BufferedReader((new InputStreamReader(connection.getInputStream(), "UTF-8")));
-
-            StringBuilder stringBuilder = new StringBuilder();
-            String str = "";
-
-            while ((str = ((BufferedReader) in).readLine()) != null) {
-                //System.out.print(str);
-                stringBuilder.append(str);
-            }
-            in.close();
-            // jsonをパース
-            //System.out.println("--[GSON parse]--------------------------------------");
-            Gson gson = new Gson();
-            MimiJSON json = gson.fromJson(stringBuilder.toString(), MimiJSON.class);
-            //System.out.println("type: " + json.type);
-            //System.out.println("session_id: " + json.session_id);
-            //System.out.println("status: " + json.status);
-
-            resultWord = new ArrayList<String>();
-            for (MimiJSON.Response res : json.response) {
-                //System.out.println("result: " + res.result);
-                String[] st = res.result.split("\\|", 0);
-                //result += st[0];
-                resultWord.add(res.result);
-            }
-            //System.out.println("--[GSON parse]--------------------------------------");
-            XMLUtil util = new XMLUtil();
-            result = util.createResponseSR(requestData, resultWord);
-        } else {
-            System.err.println("[error] code:" + status + " " + connection.getResponseMessage());
+        if (status != HttpsURLConnection.HTTP_OK) {
+            throw new IOException("[error] code: " + status + " " + connection.getResponseMessage());
         }
+        String response = connection.getResponseMessage();
+        //System.out.println("[response] code:" + status + " " + response);
+
+        Reader in = new BufferedReader((new InputStreamReader(connection.getInputStream(), "UTF-8")));
+
+        StringBuilder stringBuilder = new StringBuilder();
+        String str = "";
+
+        while ((str = ((BufferedReader) in).readLine()) != null) {
+            //System.out.print(str);
+            stringBuilder.append(str);
+        }
+        in.close();
+        // jsonをパース
+        //System.out.println("--[GSON parse]--------------------------------------");
+        Gson gson = new Gson();
+        MimiJSON json = gson.fromJson(stringBuilder.toString(), MimiJSON.class);
+        //System.out.println("type: " + json.type);
+        //System.out.println("session_id: " + json.session_id);
+        //System.out.println("status: " + json.status);
+
+        resultWord = new ArrayList<String>();
+        for (MimiJSON.Response res : json.response) {
+            //System.out.println("result: " + res.result);
+            String[] st = res.result.split("\\|", 0);
+            //result += st[0];
+            resultWord.add(res.result);
+        }
+        //System.out.println("--[GSON parse]--------------------------------------");
+        XMLUtil util = new XMLUtil();
+        result = util.createResponseSR(requestData, resultWord);
         ResponseData responseData = new ResponseData();
         responseData.setXML(result);
         return responseData;

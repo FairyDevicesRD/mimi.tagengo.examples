@@ -20,7 +20,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
 
 import ai.fd.mimi.prism.ClientComCtrl;
-import ai.fd.mimi.prism.ClientComCtrlExcepiton;
 import ai.fd.mimi.prism.ResponseData;
 
 import static android.media.AudioTrack.MODE_STREAM;
@@ -148,7 +147,7 @@ class PrismClient {
                         }
                     });
 
-                } catch (ClientComCtrlExcepiton | SAXException | XPathExpressionException | ParserConfigurationException | IOException e) {
+                } catch (SAXException | XPathExpressionException | ParserConfigurationException | IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -181,7 +180,7 @@ class PrismClient {
                     //結果を再生する
                     Log.d(getClass().getName(), "SS result: " + response.getXML());
                     ssPlayer.write(response.getBinary(), 0, response.getBinary().length);
-                } catch (ClientComCtrlExcepiton | SAXException | IOException e) {
+                } catch (SAXException | IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -232,7 +231,7 @@ class PrismClient {
                         srOutputView.setText(srResult);
                     }
                 });
-            } catch (ClientComCtrlExcepiton | SAXException | XPathExpressionException | ParserConfigurationException | IOException e) {
+            } catch (SAXException | XPathExpressionException | ParserConfigurationException | IOException e) {
                 e.printStackTrace();
             }
         }

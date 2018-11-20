@@ -15,13 +15,9 @@ public class SpeechSynthesizer {
         this.accessToken = accessToken;
     }
 
-    protected ResponseData synthesize(String url, RequestData requestData) throws ClientComCtrlExcepiton, IOException {
-
-        HttpsURLConnection connection = null;
-        ByteArrayOutputStream binaryData = null;
-
+    protected ResponseData synthesize(String url, RequestData requestData) throws IOException {
         URL host = new URL(url);
-        connection = (HttpsURLConnection) host.openConnection();
+        HttpsURLConnection connection = (HttpsURLConnection) host.openConnection();
 
         Map<String, String> params = new LinkedHashMap<>();
         //================================
@@ -52,22 +48,19 @@ public class SpeechSynthesizer {
         connection.connect();
 
         final int status = connection.getResponseCode();
-        if (status == HttpsURLConnection.HTTP_OK) {
-            String response = connection.getResponseMessage();
-            //System.out.println("[response] code:" + status + " " + connection.getResponseMessage());
+        if (status != HttpsURLConnection.HTTP_OK) {
+            throw new IOException("[error] code: " + status + " " + connection.getResponseMessage());
+        }
 
-            // 音声バイナリを取得
-            binaryData = new ByteArrayOutputStream();
-            InputStream is = connection.getInputStream();
+        // 音声バイナリを取得
+        ByteArrayOutputStream binaryData = new ByteArrayOutputStream();
+        InputStream is = connection.getInputStream();
 
-            int readLen = 0;
-            byte[] readBuf = new byte[2048];
+        int readLen = 0;
+        byte[] readBuf = new byte[2048];
 
-            while ((readLen = is.read(readBuf, 0, readBuf.length)) != -1) {
-                binaryData.write(readBuf, 0, readLen);
-            }
-        } else {
-            System.err.println("[error] code:" + status + " " + connection.getResponseMessage());
+        while ((readLen = is.read(readBuf, 0, readBuf.length)) != -1) {
+            binaryData.write(readBuf, 0, readLen);
         }
         XMLUtil util = new XMLUtil();
         ResponseData responseData = new ResponseData();

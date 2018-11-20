@@ -16,7 +16,7 @@ public class Translator {
         this.accessToken = accessToken;
     }
 
-    protected ResponseData translate(String url, RequestData requestData) throws ClientComCtrlExcepiton, IOException {
+    protected ResponseData translate(String url, RequestData requestData) throws IOException {
         String result;
         HttpsURLConnection connection = null;
         URL host = new URL(url);
@@ -43,25 +43,24 @@ public class Translator {
         connection.connect();
 
         final int status = connection.getResponseCode();
-        if (status == HttpsURLConnection.HTTP_OK) {
-            Reader in = new BufferedReader((new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8)));
-
-            StringBuilder stringBuilder = new StringBuilder();
-            String str;
-
-            while ((str = ((BufferedReader) in).readLine()) != null) {
-                //System.out.print(str);
-                stringBuilder.append(str);
-            }
-            // 結果 JSON をパース
-            Gson gson = new Gson();
-            String[] results = gson.fromJson(stringBuilder.toString(),  String[].class);
-            result = String.join(" ", results);
-
-        } else {
-            System.err.println("[error] code:" + status + " " + connection.getResponseMessage());
-            throw new ClientComCtrlExcepiton(connection.getResponseMessage());
+        if (status != HttpsURLConnection.HTTP_OK) {
+            throw new IOException("[error] code: " + status + " " + connection.getResponseMessage());
         }
+
+        Reader in = new BufferedReader((new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8)));
+
+        StringBuilder stringBuilder = new StringBuilder();
+        String str;
+
+        while ((str = ((BufferedReader) in).readLine()) != null) {
+            //System.out.print(str);
+            stringBuilder.append(str);
+        }
+        // 結果 JSON をパース
+        Gson gson = new Gson();
+        String[] results = gson.fromJson(stringBuilder.toString(), String[].class);
+        result = String.join(" ", results);
+
         XMLUtil util = new XMLUtil();
         ResponseData responseData = new ResponseData();
         responseData.setXML(util.createResponseMT(requestData, result));

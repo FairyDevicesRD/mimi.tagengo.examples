@@ -1,5 +1,4 @@
 import ai.fd.mimi.prism.ClientComCtrl;
-import ai.fd.mimi.prism.ClientComCtrlExcepiton;
 import ai.fd.mimi.prism.ResponseData;
 
 import com.google.gson.Gson;
@@ -44,13 +43,13 @@ class XMLSimpleParser {
 
     public String getMT_OUTSentence() throws XPathExpressionException {
         XPathExpression exp = xpath.compile("/STML/MT_OUT/NBest[@Order='1']/s/text()");
-        NodeList nodelist = (NodeList)exp.evaluate(doc, XPathConstants.NODESET);
+        NodeList nodelist = (NodeList) exp.evaluate(doc, XPathConstants.NODESET);
         return nodelist.item(0).getNodeValue().trim();
     }
 
     public String getSR_OUTSentence() throws XPathExpressionException {
         XPathExpression exp = xpath.compile("/STML/SR_OUT/NBest[@Order='1']/s/text()");
-        NodeList nodelist = (NodeList)exp.evaluate(doc, XPathConstants.NODESET);
+        NodeList nodelist = (NodeList) exp.evaluate(doc, XPathConstants.NODESET);
         return nodelist.item(0).getNodeValue().trim();
     }
 }
@@ -117,18 +116,17 @@ public class Main {
         connection.getOutputStream().write(postDataBytes);
         connection.connect();
         final int status = connection.getResponseCode();
-        if (status == HttpURLConnection.HTTP_OK) {
-            Reader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
-            StringBuilder stringBuilder = new StringBuilder();
-            for (int c; (c = in.read()) >= 0; ) {
-                stringBuilder.append((char) c);
-            }
-            Gson gson = new Gson();
-            AccessTokenResponse token = gson.fromJson(stringBuilder.toString(), AccessTokenResponse.class);
-            return token.accessToken;
-        } else {
+        if (status != HttpURLConnection.HTTP_OK) {
             throw new IOException("[error] code: " + status + " " + connection.getResponseMessage());
         }
+        Reader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int c; (c = in.read()) >= 0; ) {
+            stringBuilder.append((char) c);
+        }
+        Gson gson = new Gson();
+        AccessTokenResponse token = gson.fromJson(stringBuilder.toString(), AccessTokenResponse.class);
+        return token.accessToken;
     }
 
     static ArrayList<byte[]> loadRawFile(String fileName) throws IOException {
@@ -151,7 +149,7 @@ public class Main {
         return data.length;
     }
 
-    public static void main(String[] args) throws IOException, ClientComCtrlExcepiton, SAXException, ParserConfigurationException, XPathExpressionException {
+    public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException, XPathExpressionException {
         // 0. Set up ClientComCtrl
         String accessToken = getAccessToken(clientID, clientSecret);
         ClientComCtrl client = new ClientComCtrl(accessToken);
@@ -168,7 +166,7 @@ public class Main {
         client.setTransferEncodingChunked(true); // 分割送信モード
         client.request(SRURL, SRRequest); // XML リクエスト
         ArrayList<byte[]> binaryDataList = loadRawFile("data/test.raw");
-        for(byte[] b : binaryDataList) {
+        for (byte[] b : binaryDataList) {
             client.request(SRURL, b); // 複数回の音声リクエスト
         }
         response = client.request(SRURL); // リクエスト終了、結果を得る

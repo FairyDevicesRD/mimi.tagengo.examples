@@ -37,7 +37,7 @@ public class ClientComCtrl {
      *
      * @return
      */
-    public ResponseData request(String url) throws ClientComCtrlExcepiton, IOException, SAXException {
+    public ResponseData request(String url) throws IOException, SAXException {
         if (transferEncodingChunked) {
             Recognizer recog = new Recognizer(accessToken);
             RequestData requestData = util.parseXML(srChunkedRequestXmlData);
@@ -87,7 +87,7 @@ public class ClientComCtrl {
      * @param xmlData
      * @return
      */
-    public ResponseData request(String url, String xmlData) throws ClientComCtrlExcepiton, IOException, SAXException {
+    public ResponseData request(String url, String xmlData) throws IOException, SAXException {
         RequestData request = util.parseXML(xmlData);
         switch (request.type) {
             case SR:
@@ -118,7 +118,7 @@ public class ClientComCtrl {
      * @param binaryDataList
      * @return
      */
-    public ResponseData request(String url, String xmlData, ArrayList<byte[]> binaryDataList) throws ClientComCtrlExcepiton, IOException, SAXException {
+    public ResponseData request(String url, String xmlData, ArrayList<byte[]> binaryDataList) throws IOException, SAXException {
         RequestData request = util.parseXML(xmlData);
         switch (request.type) {
             case SR:
@@ -142,7 +142,7 @@ public class ClientComCtrl {
         }
     }
 
-    public ResponseData request(String url, String xmlData, byte[] binaryData) throws ClientComCtrlExcepiton, IOException, SAXException {
+    public ResponseData request(String url, String xmlData, byte[] binaryData) throws IOException, SAXException {
         ArrayList<byte[]> list = new ArrayList<>();
         list.add(binaryData);
         return request(url, xmlData, list);
