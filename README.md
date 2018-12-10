@@ -8,7 +8,13 @@
 
 - [Java版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/Java)
 - [Androidアプリ版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/Android)
-- iOSアプリ版（Coming soon）
+- [iOSアプリ版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/iOS)
+
+## 更新履歴
+
+- 2018-12-10 : iOS版サンプルアプリを公開しました
+- 2018-11-20 : Android・Java版のアップデート
+- 2018-11-13 : Android・Java版のサンプルコードを公開しました
 
 ## 困ったら
 
