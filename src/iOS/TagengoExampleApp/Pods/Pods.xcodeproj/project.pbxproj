@@ -1,0 +1,812 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C4650905BFDFDF651C2A19F4268F90E /* DDXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 93794F49A9AF41E68C27FF2AB86BBC0B /* DDXMLDocument.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0E5D6B759774EDDCCC6836EC67E1213E /* DDXMLPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 87DF5D5CDAF9C28EB0C65430CDE94B51 /* DDXMLPrivate.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		121288685FC7C5A44577E3589FF28A3F /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F217139FD68223B51A8FB7110B66918B /* DDXMLElementAdditions.m */; };
+		29372C9169F146039B5D325DC903D63B /* Pods-TagengoExampleAppUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6169E83223F5C323B7863D35CC4E804F /* Pods-TagengoExampleAppUITests-dummy.m */; };
+		2DFE88CA921D3F3AE9DD4CE60C914C26 /* NSString+DDXML.h in Headers */ = {isa = PBXBuildFile; fileRef = B374573C8ABAEA3C8AE013227FC92C74 /* NSString+DDXML.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3A661549AE12022B7B4955FCEDBB9954 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 4563FBC4685EA074D09789E455A76FAE /* NSString+DDXML.m */; };
+		4A25223DF9266B540DBAB89FE782AB19 /* DDXML.h in Headers */ = {isa = PBXBuildFile; fileRef = 75DB9A2020813177BC413BFC8DC6F2EE /* DDXML.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4C54DAEB66F38301C1E4680B6487DC1F /* Pods-TagengoExampleAppTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 627DD86EDDE88565C6D6297362163E1D /* Pods-TagengoExampleAppTests-dummy.m */; };
+		55FA78A26768745B13DC176F88F00ECA /* Pods-TagengoExampleApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 618546F55667E2C6CFA0E4B54C1B9B88 /* Pods-TagengoExampleApp-dummy.m */; };
+		617853A92249C68837867B89F078FBC0 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A1FC57187BE753BAB2CF5D6397834 /* DDXMLDocument.m */; };
+		92F12176C46D22502BF88E66FD746E24 /* DDXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = E4AA7386D6B09195C62CB47669760858 /* DDXMLNode.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BE01D3B24FF15BE69D3194BEB66A8A4D /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1488CFC0440370251E4C7E8754C373 /* DDXMLNode.m */; };
+		C109E2F7CC482667FD4D75F49B675630 /* KissXML-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 254DF852AA58CDACBC62C11DD70DA0AA /* KissXML-dummy.m */; };
+		DC4A7A715B4AD5E385CD19F5D776954E /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B45B952DED75EBF2AFDD6080573F996 /* DDXMLElement.m */; };
+		E3126BB4C59F69D3F951CA9A03126F8B /* DDXMLElement.h in Headers */ = {isa = PBXBuildFile; fileRef = EAE2228757427EDE6B37DE3F34393C33 /* DDXMLElement.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F2502566FF08B6BFC283AB21E5B13A35 /* DDXMLElementAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 98909F76326D4504CAB2D426DBAA6F0C /* DDXMLElementAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F8EB69D9A903AD7E23A522515B7CB5F4 /* KissXML.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B76E9AFC360A5D1D6F536D2DECA6E44 /* KissXML.h */; settings = {ATTRIBUTES = (Project, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		03EDAE9ACDD82988D433906EA9578EA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A349DB3319DF82AB1C7A2DDA5C19192A;
+			remoteInfo = "Pods-TagengoExampleApp";
+		};
+		D621A50647C8C79DE08A9E9E8852E74D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EFFBA3C7D26113A7A92B0011BEFBB1CE;
+			remoteInfo = KissXML;
+		};
+		DC36E89FBF49173FD0921BD17B54896E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A349DB3319DF82AB1C7A2DDA5C19192A;
+			remoteInfo = "Pods-TagengoExampleApp";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		033F223C59AFBA8D719CB8383FF94EEE /* Pods-TagengoExampleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TagengoExampleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		04B2B89FF57B81629E9F790E47701443 /* Pods-TagengoExampleAppTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TagengoExampleAppTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		0B45B952DED75EBF2AFDD6080573F996 /* DDXMLElement.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDXMLElement.m; path = KissXML/DDXMLElement.m; sourceTree = "<group>"; };
+		0DF758666336DA1FDAE2607AD05FC664 /* KissXML.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KissXML.xcconfig; sourceTree = "<group>"; };
+		14CD3FCEA3C902C74308C9FDDD99DC80 /* libKissXML.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libKissXML.a; path = libKissXML.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		254DF852AA58CDACBC62C11DD70DA0AA /* KissXML-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KissXML-dummy.m"; sourceTree = "<group>"; };
+		30B850C9F19CAF3294F7E491F737E021 /* libPods-TagengoExampleAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-TagengoExampleAppTests.a"; path = "libPods-TagengoExampleAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		38CDA6B488AB0B29771F72B32E9661CF /* Pods-TagengoExampleAppTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TagengoExampleAppTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		4185C1B19448AA39D014B70C43E9FAAB /* Pods-TagengoExampleAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TagengoExampleAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		4563FBC4685EA074D09789E455A76FAE /* NSString+DDXML.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+DDXML.m"; path = "KissXML/Categories/NSString+DDXML.m"; sourceTree = "<group>"; };
+		5201BA9624D58B415F1867C352A56C17 /* Pods-TagengoExampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TagengoExampleApp.release.xcconfig"; sourceTree = "<group>"; };
+		6169E83223F5C323B7863D35CC4E804F /* Pods-TagengoExampleAppUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TagengoExampleAppUITests-dummy.m"; sourceTree = "<group>"; };
+		618546F55667E2C6CFA0E4B54C1B9B88 /* Pods-TagengoExampleApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TagengoExampleApp-dummy.m"; sourceTree = "<group>"; };
+		627DD86EDDE88565C6D6297362163E1D /* Pods-TagengoExampleAppTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TagengoExampleAppTests-dummy.m"; sourceTree = "<group>"; };
+		6B76E9AFC360A5D1D6F536D2DECA6E44 /* KissXML.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KissXML.h; path = KissXML/KissXML.h; sourceTree = "<group>"; };
+		75DB9A2020813177BC413BFC8DC6F2EE /* DDXML.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDXML.h; path = KissXML/DDXML.h; sourceTree = "<group>"; };
+		87DF5D5CDAF9C28EB0C65430CDE94B51 /* DDXMLPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDXMLPrivate.h; path = KissXML/Private/DDXMLPrivate.h; sourceTree = "<group>"; };
+		93794F49A9AF41E68C27FF2AB86BBC0B /* DDXMLDocument.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDXMLDocument.h; path = KissXML/DDXMLDocument.h; sourceTree = "<group>"; };
+		98909F76326D4504CAB2D426DBAA6F0C /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDXMLElementAdditions.h; path = KissXML/Additions/DDXMLElementAdditions.h; sourceTree = "<group>"; };
+		A37157A51ECD440CFD3C290209BC3D49 /* KissXML-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KissXML-prefix.pch"; sourceTree = "<group>"; };
+		AB498AA44D3D3359EE56D0D8BF8FAC0F /* Pods-TagengoExampleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TagengoExampleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AD1C951822D46B321674B96E0873FDDE /* Pods-TagengoExampleApp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TagengoExampleApp-acknowledgements.plist"; sourceTree = "<group>"; };
+		B2CD4A1F1AA68D1314D73A474CE40199 /* Pods-TagengoExampleApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TagengoExampleApp-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B36AB396275697EEE1A5B13BA8A38FE3 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B374573C8ABAEA3C8AE013227FC92C74 /* NSString+DDXML.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+DDXML.h"; path = "KissXML/Categories/NSString+DDXML.h"; sourceTree = "<group>"; };
+		B75A1FC57187BE753BAB2CF5D6397834 /* DDXMLDocument.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDXMLDocument.m; path = KissXML/DDXMLDocument.m; sourceTree = "<group>"; };
+		BE1488CFC0440370251E4C7E8754C373 /* DDXMLNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDXMLNode.m; path = KissXML/DDXMLNode.m; sourceTree = "<group>"; };
+		CB2555A27DE5B0C7BB2B1CABA8D14B1D /* Pods-TagengoExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TagengoExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
+		D4A44018CF0520776B771A05801FC2B2 /* Pods-TagengoExampleAppUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TagengoExampleAppUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D6E183AE5972C90B390F341F73261485 /* Pods-TagengoExampleAppUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TagengoExampleAppUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		E2F0000B6F16BB18FA1B0E78D6C1F8E7 /* Pods-TagengoExampleAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TagengoExampleAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E4AA7386D6B09195C62CB47669760858 /* DDXMLNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDXMLNode.h; path = KissXML/DDXMLNode.h; sourceTree = "<group>"; };
+		E69FBEC590900CA1ED067B629CC22B08 /* libPods-TagengoExampleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-TagengoExampleApp.a"; path = "libPods-TagengoExampleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAE2228757427EDE6B37DE3F34393C33 /* DDXMLElement.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDXMLElement.h; path = KissXML/DDXMLElement.h; sourceTree = "<group>"; };
+		F217139FD68223B51A8FB7110B66918B /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDXMLElementAdditions.m; path = KissXML/Additions/DDXMLElementAdditions.m; sourceTree = "<group>"; };
+		FDCBD7EE957B3B278FC5728E34F00EE1 /* libPods-TagengoExampleAppUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-TagengoExampleAppUITests.a"; path = "libPods-TagengoExampleAppUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		15426665EE382E6C7884B3D41D12C8C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		326FEFFBD26E229D6A188434B7A92A7F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73A8C10D6B9FB633A14BD00BA7BB76D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F731D5A785CAEAF38D9C17CBBE6A84FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0F0C89E15AE329C9CE83A1106B2C14C6 /* Pods-TagengoExampleAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D4A44018CF0520776B771A05801FC2B2 /* Pods-TagengoExampleAppUITests-acknowledgements.markdown */,
+				D6E183AE5972C90B390F341F73261485 /* Pods-TagengoExampleAppUITests-acknowledgements.plist */,
+				6169E83223F5C323B7863D35CC4E804F /* Pods-TagengoExampleAppUITests-dummy.m */,
+				033F223C59AFBA8D719CB8383FF94EEE /* Pods-TagengoExampleAppUITests.debug.xcconfig */,
+				AB498AA44D3D3359EE56D0D8BF8FAC0F /* Pods-TagengoExampleAppUITests.release.xcconfig */,
+			);
+			name = "Pods-TagengoExampleAppUITests";
+			path = "Target Support Files/Pods-TagengoExampleAppUITests";
+			sourceTree = "<group>";
+		};
+		0F8D2E47FE03D3B91B51069F7C273AF4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2E6AA7EF15B5D336FE1E1682078CF86D /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0DF758666336DA1FDAE2607AD05FC664 /* KissXML.xcconfig */,
+				254DF852AA58CDACBC62C11DD70DA0AA /* KissXML-dummy.m */,
+				A37157A51ECD440CFD3C290209BC3D49 /* KissXML-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/KissXML";
+			sourceTree = "<group>";
+		};
+		400741189EEB290FBC2086158A4D569B /* Pods-TagengoExampleAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				04B2B89FF57B81629E9F790E47701443 /* Pods-TagengoExampleAppTests-acknowledgements.markdown */,
+				38CDA6B488AB0B29771F72B32E9661CF /* Pods-TagengoExampleAppTests-acknowledgements.plist */,
+				627DD86EDDE88565C6D6297362163E1D /* Pods-TagengoExampleAppTests-dummy.m */,
+				E2F0000B6F16BB18FA1B0E78D6C1F8E7 /* Pods-TagengoExampleAppTests.debug.xcconfig */,
+				4185C1B19448AA39D014B70C43E9FAAB /* Pods-TagengoExampleAppTests.release.xcconfig */,
+			);
+			name = "Pods-TagengoExampleAppTests";
+			path = "Target Support Files/Pods-TagengoExampleAppTests";
+			sourceTree = "<group>";
+		};
+		696B7193F55B4124C8176E1437FF776F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BF385C0515546F54B8CA7386816B9B16 /* KissXML */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				B36AB396275697EEE1A5B13BA8A38FE3 /* Podfile */,
+				0F8D2E47FE03D3B91B51069F7C273AF4 /* Frameworks */,
+				696B7193F55B4124C8176E1437FF776F /* Pods */,
+				F6DC1483917013FA4A87B78475C1DF3D /* Products */,
+				DB064B4ABFC6B2EF012A6A9966FF66B1 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		9B0C31B4C0430CDA08B34C22E7317B1C /* Pods-TagengoExampleApp */ = {
+			isa = PBXGroup;
+			children = (
+				B2CD4A1F1AA68D1314D73A474CE40199 /* Pods-TagengoExampleApp-acknowledgements.markdown */,
+				AD1C951822D46B321674B96E0873FDDE /* Pods-TagengoExampleApp-acknowledgements.plist */,
+				618546F55667E2C6CFA0E4B54C1B9B88 /* Pods-TagengoExampleApp-dummy.m */,
+				CB2555A27DE5B0C7BB2B1CABA8D14B1D /* Pods-TagengoExampleApp.debug.xcconfig */,
+				5201BA9624D58B415F1867C352A56C17 /* Pods-TagengoExampleApp.release.xcconfig */,
+			);
+			name = "Pods-TagengoExampleApp";
+			path = "Target Support Files/Pods-TagengoExampleApp";
+			sourceTree = "<group>";
+		};
+		BF385C0515546F54B8CA7386816B9B16 /* KissXML */ = {
+			isa = PBXGroup;
+			children = (
+				75DB9A2020813177BC413BFC8DC6F2EE /* DDXML.h */,
+				93794F49A9AF41E68C27FF2AB86BBC0B /* DDXMLDocument.h */,
+				B75A1FC57187BE753BAB2CF5D6397834 /* DDXMLDocument.m */,
+				EAE2228757427EDE6B37DE3F34393C33 /* DDXMLElement.h */,
+				0B45B952DED75EBF2AFDD6080573F996 /* DDXMLElement.m */,
+				98909F76326D4504CAB2D426DBAA6F0C /* DDXMLElementAdditions.h */,
+				F217139FD68223B51A8FB7110B66918B /* DDXMLElementAdditions.m */,
+				E4AA7386D6B09195C62CB47669760858 /* DDXMLNode.h */,
+				BE1488CFC0440370251E4C7E8754C373 /* DDXMLNode.m */,
+				87DF5D5CDAF9C28EB0C65430CDE94B51 /* DDXMLPrivate.h */,
+				6B76E9AFC360A5D1D6F536D2DECA6E44 /* KissXML.h */,
+				B374573C8ABAEA3C8AE013227FC92C74 /* NSString+DDXML.h */,
+				4563FBC4685EA074D09789E455A76FAE /* NSString+DDXML.m */,
+				2E6AA7EF15B5D336FE1E1682078CF86D /* Support Files */,
+			);
+			name = KissXML;
+			path = KissXML;
+			sourceTree = "<group>";
+		};
+		DB064B4ABFC6B2EF012A6A9966FF66B1 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9B0C31B4C0430CDA08B34C22E7317B1C /* Pods-TagengoExampleApp */,
+				400741189EEB290FBC2086158A4D569B /* Pods-TagengoExampleAppTests */,
+				0F0C89E15AE329C9CE83A1106B2C14C6 /* Pods-TagengoExampleAppUITests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		F6DC1483917013FA4A87B78475C1DF3D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				14CD3FCEA3C902C74308C9FDDD99DC80 /* libKissXML.a */,
+				E69FBEC590900CA1ED067B629CC22B08 /* libPods-TagengoExampleApp.a */,
+				30B850C9F19CAF3294F7E491F737E021 /* libPods-TagengoExampleAppTests.a */,
+				FDCBD7EE957B3B278FC5728E34F00EE1 /* libPods-TagengoExampleAppUITests.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		18506988F68FBA58BED46FFC3761B6B2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46FBB5A45BD6C3FDA0A238F4C3B7876D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD97E625B9DACA067D344695F77F4B4A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A25223DF9266B540DBAB89FE782AB19 /* DDXML.h in Headers */,
+				0C4650905BFDFDF651C2A19F4268F90E /* DDXMLDocument.h in Headers */,
+				E3126BB4C59F69D3F951CA9A03126F8B /* DDXMLElement.h in Headers */,
+				F2502566FF08B6BFC283AB21E5B13A35 /* DDXMLElementAdditions.h in Headers */,
+				92F12176C46D22502BF88E66FD746E24 /* DDXMLNode.h in Headers */,
+				0E5D6B759774EDDCCC6836EC67E1213E /* DDXMLPrivate.h in Headers */,
+				F8EB69D9A903AD7E23A522515B7CB5F4 /* KissXML.h in Headers */,
+				2DFE88CA921D3F3AE9DD4CE60C914C26 /* NSString+DDXML.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E94873E3E12A8CB43DDFED5FC7F46FCF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1D1014C0C60FF3208D1F7C43F0F94383 /* Pods-TagengoExampleAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95E9609EBED218F51EC0CE94087083AE /* Build configuration list for PBXNativeTarget "Pods-TagengoExampleAppUITests" */;
+			buildPhases = (
+				46FBB5A45BD6C3FDA0A238F4C3B7876D /* Headers */,
+				6638A46200D1EB2590CEB59609D4F0F3 /* Sources */,
+				F731D5A785CAEAF38D9C17CBBE6A84FC /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C2094212379E2D8F5A0F57B39F9CAAA7 /* PBXTargetDependency */,
+			);
+			name = "Pods-TagengoExampleAppUITests";
+			productName = "Pods-TagengoExampleAppUITests";
+			productReference = FDCBD7EE957B3B278FC5728E34F00EE1 /* libPods-TagengoExampleAppUITests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		A349DB3319DF82AB1C7A2DDA5C19192A /* Pods-TagengoExampleApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F85BDCE179D85BEAF96988E5A5D53ADF /* Build configuration list for PBXNativeTarget "Pods-TagengoExampleApp" */;
+			buildPhases = (
+				E94873E3E12A8CB43DDFED5FC7F46FCF /* Headers */,
+				8398E42E1D91A721086DDA43BE9FC1D7 /* Sources */,
+				73A8C10D6B9FB633A14BD00BA7BB76D9 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				744D7A336C2BF305318A84204E0833ED /* PBXTargetDependency */,
+			);
+			name = "Pods-TagengoExampleApp";
+			productName = "Pods-TagengoExampleApp";
+			productReference = E69FBEC590900CA1ED067B629CC22B08 /* libPods-TagengoExampleApp.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		B0E32F211ACA1D7087498BFA51481200 /* Pods-TagengoExampleAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4338B747C6FB63FFA5948D43E5F9C326 /* Build configuration list for PBXNativeTarget "Pods-TagengoExampleAppTests" */;
+			buildPhases = (
+				18506988F68FBA58BED46FFC3761B6B2 /* Headers */,
+				1A580FEF693F81B523FBC905FD8821EC /* Sources */,
+				15426665EE382E6C7884B3D41D12C8C2 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA2928DA7F04EA3497D08F9ED1FF9159 /* PBXTargetDependency */,
+			);
+			name = "Pods-TagengoExampleAppTests";
+			productName = "Pods-TagengoExampleAppTests";
+			productReference = 30B850C9F19CAF3294F7E491F737E021 /* libPods-TagengoExampleAppTests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		EFFBA3C7D26113A7A92B0011BEFBB1CE /* KissXML */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 630A50D37FA3B91388F917D09084F008 /* Build configuration list for PBXNativeTarget "KissXML" */;
+			buildPhases = (
+				DD97E625B9DACA067D344695F77F4B4A /* Headers */,
+				C22A85C4815F50D941F5B511F569E021 /* Sources */,
+				326FEFFBD26E229D6A188434B7A92A7F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KissXML;
+			productName = KissXML;
+			productReference = 14CD3FCEA3C902C74308C9FDDD99DC80 /* libKissXML.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = F6DC1483917013FA4A87B78475C1DF3D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EFFBA3C7D26113A7A92B0011BEFBB1CE /* KissXML */,
+				A349DB3319DF82AB1C7A2DDA5C19192A /* Pods-TagengoExampleApp */,
+				B0E32F211ACA1D7087498BFA51481200 /* Pods-TagengoExampleAppTests */,
+				1D1014C0C60FF3208D1F7C43F0F94383 /* Pods-TagengoExampleAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A580FEF693F81B523FBC905FD8821EC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C54DAEB66F38301C1E4680B6487DC1F /* Pods-TagengoExampleAppTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6638A46200D1EB2590CEB59609D4F0F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29372C9169F146039B5D325DC903D63B /* Pods-TagengoExampleAppUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8398E42E1D91A721086DDA43BE9FC1D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55FA78A26768745B13DC176F88F00ECA /* Pods-TagengoExampleApp-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C22A85C4815F50D941F5B511F569E021 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				617853A92249C68837867B89F078FBC0 /* DDXMLDocument.m in Sources */,
+				DC4A7A715B4AD5E385CD19F5D776954E /* DDXMLElement.m in Sources */,
+				121288685FC7C5A44577E3589FF28A3F /* DDXMLElementAdditions.m in Sources */,
+				BE01D3B24FF15BE69D3194BEB66A8A4D /* DDXMLNode.m in Sources */,
+				C109E2F7CC482667FD4D75F49B675630 /* KissXML-dummy.m in Sources */,
+				3A661549AE12022B7B4955FCEDBB9954 /* NSString+DDXML.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		744D7A336C2BF305318A84204E0833ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KissXML;
+			target = EFFBA3C7D26113A7A92B0011BEFBB1CE /* KissXML */;
+			targetProxy = D621A50647C8C79DE08A9E9E8852E74D /* PBXContainerItemProxy */;
+		};
+		BA2928DA7F04EA3497D08F9ED1FF9159 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-TagengoExampleApp";
+			target = A349DB3319DF82AB1C7A2DDA5C19192A /* Pods-TagengoExampleApp */;
+			targetProxy = 03EDAE9ACDD82988D433906EA9578EA3 /* PBXContainerItemProxy */;
+		};
+		C2094212379E2D8F5A0F57B39F9CAAA7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-TagengoExampleApp";
+			target = A349DB3319DF82AB1C7A2DDA5C19192A /* Pods-TagengoExampleApp */;
+			targetProxy = DC36E89FBF49173FD0921BD17B54896E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2793D07DFAC0DB1825DEB39DB3448DED /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DF758666336DA1FDAE2607AD05FC664 /* KissXML.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/KissXML/KissXML-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = KissXML;
+				PRODUCT_NAME = KissXML;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4592E0C30AF557CAEF494CA17DD56A2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 033F223C59AFBA8D719CB8383FF94EEE /* Pods-TagengoExampleAppUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		537DA4839F4B0D68E6EB53E156A77AA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB2555A27DE5B0C7BB2B1CABA8D14B1D /* Pods-TagengoExampleApp.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5B24BB182D8ECDEA7D2076168A2E42DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DF758666336DA1FDAE2607AD05FC664 /* KissXML.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/KissXML/KissXML-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = KissXML;
+				PRODUCT_NAME = KissXML;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6206AB3D8C02037988D8DADCC982215F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5201BA9624D58B415F1867C352A56C17 /* Pods-TagengoExampleApp.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		749A3881BF507DF1FDBA73E79D292109 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		7B434E17073CDE1AF45877A5491C45F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB498AA44D3D3359EE56D0D8BF8FAC0F /* Pods-TagengoExampleAppUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A1CBB4736B5B4470080F6F91A81682DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		BAF21F92C5353ED7F97ED0C15A479AC9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4185C1B19448AA39D014B70C43E9FAAB /* Pods-TagengoExampleAppTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ECEEEBDD588CC2BC0526B931CD217768 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2F0000B6F16BB18FA1B0E78D6C1F8E7 /* Pods-TagengoExampleAppTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				749A3881BF507DF1FDBA73E79D292109 /* Debug */,
+				A1CBB4736B5B4470080F6F91A81682DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4338B747C6FB63FFA5948D43E5F9C326 /* Build configuration list for PBXNativeTarget "Pods-TagengoExampleAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECEEEBDD588CC2BC0526B931CD217768 /* Debug */,
+				BAF21F92C5353ED7F97ED0C15A479AC9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		630A50D37FA3B91388F917D09084F008 /* Build configuration list for PBXNativeTarget "KissXML" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B24BB182D8ECDEA7D2076168A2E42DF /* Debug */,
+				2793D07DFAC0DB1825DEB39DB3448DED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		95E9609EBED218F51EC0CE94087083AE /* Build configuration list for PBXNativeTarget "Pods-TagengoExampleAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4592E0C30AF557CAEF494CA17DD56A2E /* Debug */,
+				7B434E17073CDE1AF45877A5491C45F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F85BDCE179D85BEAF96988E5A5D53ADF /* Build configuration list for PBXNativeTarget "Pods-TagengoExampleApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				537DA4839F4B0D68E6EB53E156A77AA7 /* Debug */,
+				6206AB3D8C02037988D8DADCC982215F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
