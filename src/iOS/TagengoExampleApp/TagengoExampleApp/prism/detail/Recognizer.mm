@@ -31,6 +31,13 @@ void rxfunc(const char *result, size_t len, int *rxfunc_error, void *userdata_fo
     *resultJson = [resultStr UTF8String];
 }
 
++ (BOOL)isSpaceSeparatingLanguage:(NSString *_Nonnull)langCode {
+    return [langCode compare:@"en"] == NSOrderedSame ||
+            [langCode compare:@"fr"] == NSOrderedSame ||
+            [langCode compare:@"es"] == NSOrderedSame ||
+            [langCode compare:@"id"] == NSOrderedSame ||
+            [langCode compare:@"vi"] == NSOrderedSame;
+}
 
 - (id)init {
     return [self initWithAccessToken:@""];
@@ -160,7 +167,11 @@ void rxfunc(const char *result, size_t len, int *rxfunc_error, void *userdata_fo
     [nbestElem addAttribute:[DDXMLNode attributeWithName:@"Order" stringValue:@"1"]];
 
     DDXMLElement *sentenceElem = [[DDXMLElement alloc] initWithName:@"s"];
-    [sentenceElem addAttribute:[DDXMLNode attributeWithName:@"Delimiter" stringValue:@" "]]; // 半角スペース固定
+    if ([[self class] isSpaceSeparatingLanguage:requestData.lang]) {
+        [sentenceElem addAttribute:[DDXMLNode attributeWithName:@"Delimiter" stringValue:@" "]];
+    } else {
+        [sentenceElem addAttribute:[DDXMLNode attributeWithName:@"Delimiter" stringValue:@""]];
+    }
     NSMutableString *combined = [[NSMutableString alloc] init];
     NSMutableArray *wordElems = [[NSMutableArray alloc] init];
     BOOL isFirst = true;
@@ -170,9 +181,10 @@ void rxfunc(const char *result, size_t len, int *rxfunc_error, void *userdata_fo
             isFirst = false;
             [combined appendString:word];
         } else {
-            if ([word length] > 0) {
-                [combined appendString:[@" " stringByAppendingString:word]];
+            if ([[self class] isSpaceSeparatingLanguage:requestData.lang] && [word length] > 0 && [word compare:@"."] != NSOrderedSame) {
+                [combined appendString:@" "];
             }
+            [combined appendString:word];
         }
         DDXMLElement *wordElem = [[DDXMLElement alloc] initWithName:@"Word"];
         [wordElem setStringValue:result];

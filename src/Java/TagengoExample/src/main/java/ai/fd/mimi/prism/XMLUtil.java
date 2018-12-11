@@ -208,7 +208,11 @@ class XMLUtil {
             // STML/SR_OUT/NBests/s
             Element sentenceElement = doc.createElement("s");
             sentenceElement.setAttribute("Duration", "1");
-            sentenceElement.setAttribute("Delimiter", " ");
+            if (SPACE_SEPARATING_LANGUAGES.contains(request.language)) {
+                sentenceElement.setAttribute("Delimiter", " ");
+            } else {
+                sentenceElement.setAttribute("Delimiter", "");
+            }
             StringBuilder resultText = new StringBuilder();
             boolean isFirst = true;
             for (String str : words) {
