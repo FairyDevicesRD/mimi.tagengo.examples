@@ -10,6 +10,16 @@
 - [Androidアプリ版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/Android)
 - [iOSアプリ版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/iOS)
 
+## サンプルコードで使用しているオープンソースソフトウェアについて
+
+iOSアプリおよびAndroidアプリでは、以下のオープンソースソフトウェアを利用いたします。iOSアプリまたはAndroidアプリ内にこれらのソフトウェアを同梱した形で再配布される場合はそれぞれのライセンスにも従う必要がございます。ご利用の際はご留意ください。
+
+- [libmimiio](https://github.com/FairyDevicesRD/libmimiio)
+- [POCO](https://github.com/pocoproject/poco/blob/develop/LICENSE)
+- [OpenSSL](https://www.openssl.org/source/license-openssl-ssleay.txt)
+- [FLAC](https://git.xiph.org/?p=flac.git;a=blob;f=COPYING.Xiph;h=d8295f0ed7dfa373a4024ce111c636ed3466c6c9;hb=HEAD)
+
+
 ## 更新履歴
 
 - 2018-12-10 : iOS版サンプルアプリを公開しました
