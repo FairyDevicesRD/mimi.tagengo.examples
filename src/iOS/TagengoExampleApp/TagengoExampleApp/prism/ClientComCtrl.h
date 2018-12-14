@@ -12,7 +12,7 @@
 
 /**
  * SR一括送信 (非同期)
- * @param url ホストURL (使用しません)
+ * @param url ホストURL
  * @param xmlData リクエストXML
  * @param binaryData 音声データ
  * @param completionHandler 結果取得コールバック
@@ -24,7 +24,7 @@ completionHandler:(void (^ _Nonnull)(ResponseData *_Nullable resData, NSError *_
 
 /**
  * SR分割送信開始 / MT / SS (非同期)
- * @param url ホストURL (使用しません)
+ * @param url ホストURL
  * @param xmlData リクエストXML
  * @param completionHandler 結果取得コールバック
  */
@@ -34,7 +34,7 @@ completionHandler:(void (^ _Nonnull)(ResponseData *_Nullable resData, NSError *_
 
 /**
  * SR分割送信データ追加 (非同期)
- * @param url ホストURL (使用しません)
+ * @param url ホストURL
  * @param binaryData 音声データ
  * @param completionHandler 結果取得コールバック
  */
@@ -44,7 +44,7 @@ completionHandler:(void (^ _Nonnull)(ResponseData *_Nullable resData, NSError *_
 
 /**
  * SR分割送信終了 (非同期)
- * @param url ホストURL (使用しません)
+ * @param url ホストURL
  * @param completionHandler 結果取得コールバック
  */
 - (void)  request:(NSString *_Nonnull)url
@@ -53,7 +53,7 @@ completionHandler:(void (^ _Nonnull)(ResponseData *_Nullable resData, NSError *_
 
 /**
  * SR一括送信 (同期)
- * @param url ホストURL (使用しません)
+ * @param url ホストURL
  * @param xmlData リクエストXML
  * @param binaryData 音声データ
  * @param resData 結果
@@ -65,7 +65,7 @@ completionHandler:(void (^ _Nonnull)(ResponseData *_Nullable resData, NSError *_
 
 /**
  * SR分割送信開始 / MT / SS (同期)
- * @param url ホストURL (使用しません)
+ * @param url ホストURL
  * @param xmlData リクエストXML
  * @param resData 結果
  */
@@ -76,7 +76,7 @@ completionHandler:(void (^ _Nonnull)(ResponseData *_Nullable resData, NSError *_
 
 /**
  * SR分割送信データ追加 (同期)
- * @param url ホストURL (使用しません)
+ * @param url ホストURL
  * @param binaryData 音声データ
  * @param resData 結果
  */
@@ -86,7 +86,7 @@ completionHandler:(void (^ _Nonnull)(ResponseData *_Nullable resData, NSError *_
 
 /**
  * SR分割送信終了 (同期)
- * @param url ホストURL (使用しません)
+ * @param url ホストURL
  * @param resData 音声データ
  */
 - (int)request:(NSString *_Nonnull)url

@@ -60,6 +60,7 @@ dispatch_queue_main_t _main_queue;
 
 - (IBAction)mtTouchUp:(UIButton *)sender {
     NSLog(@"tap MT button");
+    NSString *MT_URL = @"https://sandbox-mt.mimi.fd.ai/machine_translation";
     NSString *MTRequestTemplate = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
                                   "<STML UtteranceID=\"0\" Version=\"1.0\">\n"
                                   "<User ID=\"N/A\"/>\n"
@@ -71,7 +72,7 @@ dispatch_queue_main_t _main_queue;
                                   "</STML>\n";
     _client = [[ClientComCtrl alloc] initWithAccessToken:_accessToken];
     NSString *xml = [NSString stringWithFormat:MTRequestTemplate, @"ja", @"en", self->_recognizedText.text];
-    [_client request:@"dummyURL" xmlData:xml completionHandler:^(ResponseData *resData, NSError *error) {
+    [_client request:MT_URL xmlData:xml completionHandler:^(ResponseData *resData, NSError *error) {
         if (error) {
             NSLog(@"MT error: %@", error);
             return;
@@ -86,6 +87,7 @@ dispatch_queue_main_t _main_queue;
 
 - (IBAction)srTouchUp:(UIButton *)sender {
     NSLog(@"tap SR button");
+    NSString *SR_URL = @"wss://sandbox-sr.mimi.fd.ai";
     if (isRecording) {
         [_srButton setTitle:@"SR" forState:UIControlStateNormal];
         isRecording = false;
@@ -93,7 +95,7 @@ dispatch_queue_main_t _main_queue;
         [_recorder stopRecording];
 
         NSLog(@"分割送信終了");
-        [_client request:@"dummyURL" completionHandler:^(ResponseData *resData, NSError *error) {
+        [_client request:SR_URL completionHandler:^(ResponseData *resData, NSError *error) {
             if (error) {
                 NSLog(@"分割送信終了 error: %@", error);
             }
@@ -125,7 +127,7 @@ dispatch_queue_main_t _main_queue;
         NSString *xml = [NSString stringWithFormat:SRRequestTemplate, @"ja"];
 
         NSLog(@"分割送信開始 xml : %@", xml);
-        [_client request:@"dummyURL" xmlData:xml completionHandler:^(ResponseData *resData, NSError *error) {
+        [_client request:SR_URL xmlData:xml completionHandler:^(ResponseData *resData, NSError *error) {
             if (error) {
                 NSLog(@"分割送信開始 error: %@", error);
                 dispatch_async(_main_queue, ^{
@@ -136,7 +138,7 @@ dispatch_queue_main_t _main_queue;
         }];
         // 録音開始
         [_recorder startRecording:^(NSError *error, NSData *_Nonnull buffer) {
-            [self->_client request:@"dummyURL" binaryData:buffer completionHandler:^(ResponseData *resData, NSError *error) {
+            [self->_client request:SR_URL binaryData:buffer completionHandler:^(ResponseData *resData, NSError *error) {
                 if (error) {
                     NSLog(@"分割送信 音声追加中 error: %@", error);
                     [self->_recorder stopRecording];
@@ -152,6 +154,7 @@ dispatch_queue_main_t _main_queue;
 
 - (IBAction)ssTouchUp:(UIButton *)sender {
     NSLog(@"tap SS button");
+    NSString *SS_URL = @"https://sandbox-ss.mimi.fd.ai/speech_synthesis";
     NSString *SSRequestTemplate = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
                                   "<STML UtteranceID=\"0\" Version=\"1\">\n"
                                   "<User ID=\"N/A\"/>\n"
@@ -164,7 +167,7 @@ dispatch_queue_main_t _main_queue;
                                   "</STML>";
     NSString *xml = [NSString stringWithFormat:SSRequestTemplate, @"en", @"Female", self->_transratedText.text];
     _client = [[ClientComCtrl alloc] initWithAccessToken:_accessToken];
-    [_client request:@"dummyURL" xmlData:xml completionHandler:^(ResponseData *resData, NSError *error) {
+    [_client request:SS_URL xmlData:xml completionHandler:^(ResponseData *resData, NSError *error) {
         if (error) {
             NSLog(@"SS error: %@", error);
             return;

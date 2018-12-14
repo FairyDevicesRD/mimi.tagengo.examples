@@ -37,11 +37,15 @@
         // parse error
         completionHandler(nil, error);
     } else if ([_requestData isKindOfClass:[SRRequestData class]]) {
+        if (![url isEqualToString: SR_URL]) {
+            completionHandler(nil, [NSError errorWithDomain:DOMAIN_NAME code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Error : URL not supported."}]);
+            return;
+        }
         if (_transferEncodingChunked) {
             error = [[NSError alloc] initWithDomain:DOMAIN_NAME code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Error : Illegal state change."}];
             completionHandler(nil, error);
         } else {
-            ;
+            completionHandler(nil, [NSError errorWithDomain:DOMAIN_NAME code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Error : Not implemented."}]);
         }
     } else {
         error = [[NSError alloc] initWithDomain:DOMAIN_NAME code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Error : Illegal state change."}];
@@ -60,6 +64,10 @@
         // parse error
         completionHandler(nil, error);
     } else if ([_requestData isKindOfClass:[SRRequestData class]]) {
+        if (![url isEqualToString: SR_URL]) {
+            completionHandler(nil, [NSError errorWithDomain:DOMAIN_NAME code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Error : URL not supported."}]);
+            return;
+        }
         if (_transferEncodingChunked) {
             // SR分割送信開始処理
             _recognizer = [[Recognizer alloc] initWithAccessToken:_accessToken];
@@ -71,11 +79,19 @@
             completionHandler(nil, error);
         }
     } else if ([_requestData isKindOfClass:[MTRequestData class]]) {
+        if (![url isEqualToString: MT_URL]) {
+            completionHandler(nil, [NSError errorWithDomain:DOMAIN_NAME code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Error : URL not supported."}]);
+            return;
+        }
         Transrator *tran = [[Transrator alloc] initWithAccessToken:_accessToken];
         [tran transrate:_requestData completion:^(ResponseData *_Nullable response, NSError *_Nullable error) {
             completionHandler(response, error);
         }];
     } else if ([_requestData isKindOfClass:[SSRequestData class]]) {
+        if (![url isEqualToString: SS_URL]) {
+            completionHandler(nil, [NSError errorWithDomain:DOMAIN_NAME code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Error : URL not supported."}]);
+            return;
+        }
         SpeechSynthesizer *synth = [[SpeechSynthesizer alloc] initWithAccessToken:_accessToken];
         [synth synthesize:_requestData completion:^(ResponseData *_Nullable response, NSError *_Nullable error) {
             completionHandler(response, error);
@@ -92,6 +108,10 @@
         error = [[NSError alloc] initWithDomain:DOMAIN_NAME code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Error : request XML is empty."}];
         completionHandler(nil, error);
     } else if ([_requestData isKindOfClass:[SRRequestData class]]) {
+        if (![url isEqualToString: SR_URL]) {
+            completionHandler(nil, [NSError errorWithDomain:DOMAIN_NAME code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Error : URL not supported."}]);
+            return;
+        }
         if (_transferEncodingChunked) {
             // SR分割送信処理
             [_recognizer addData:binaryData completion:^(ResponseData *_Nullable response, NSError *_Nullable error) {
@@ -116,6 +136,10 @@
         error = [[NSError alloc] initWithDomain:DOMAIN_NAME code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Error : request XML is empty."}];
         completionHandler(nil, error);
     } else if ([_requestData isKindOfClass:[SRRequestData class]]) {
+        if (![url isEqualToString: SR_URL]) {
+            completionHandler(nil, [NSError errorWithDomain:DOMAIN_NAME code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Error : URL not supported."}]);
+            return;
+        }
         if (_transferEncodingChunked) {
             // SR分割送信終了処理
             [_recognizer endRecognize:^(ResponseData *_Nullable response, NSError *_Nullable error) {
