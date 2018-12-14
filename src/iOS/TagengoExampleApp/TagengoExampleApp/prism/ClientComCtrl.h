@@ -57,47 +57,39 @@ completionHandler:(void (^ _Nonnull)(ResponseData *_Nullable resData, NSError *_
  * @param xmlData リクエストXML
  * @param binaryData 音声データ
  * @param resData 結果
- * @param error エラー
  */
-- (BOOL)request:(NSString *_Nonnull)url
+- (int)request:(NSString *_Nonnull)url
         xmlData:(NSString *_Nonnull)xmlData
      binaryData:(NSData *_Nonnull)binaryData
-        resData:(ResponseData *_Nullable *_Nonnull)resData
-          error:(NSError *_Nullable *_Nonnull)error;
+        resData:(ResponseData *_Nullable *_Nonnull)resData;
 
 /**
  * SR分割送信開始 / MT / SS (同期)
  * @param url ホストURL (使用しません)
  * @param xmlData リクエストXML
  * @param resData 結果
- * @param error エラー
  */
 
-- (BOOL)request:(NSString *_Nonnull)url
+- (int)request:(NSString *_Nonnull)url
         xmlData:(NSString *_Nonnull)xmlData
-        resData:(ResponseData *_Nullable *_Nonnull)resData
-          error:(NSError *_Nullable *_Nonnull)error;
+        resData:(ResponseData *_Nullable *_Nonnull)resData;
 
 /**
  * SR分割送信データ追加 (同期)
  * @param url ホストURL (使用しません)
  * @param binaryData 音声データ
  * @param resData 結果
- * @param error エラー
  */
-- (BOOL)request:(NSString *_Nonnull)url
+- (int)request:(NSString *_Nonnull)url
      binaryData:(NSData *_Nonnull)binaryData
-        resData:(ResponseData *_Nullable *_Nonnull)resData
-          error:(NSError *_Nullable *_Nonnull)error;
+        resData:(ResponseData *_Nullable *_Nonnull)resData;
 
 /**
  * SR分割送信終了 (同期)
  * @param url ホストURL (使用しません)
  * @param resData 音声データ
- * @param error エラー
  */
-- (BOOL)request:(NSString *_Nonnull)url
-        resData:(ResponseData *_Nullable *_Nonnull)resData
-          error:(NSError *_Nullable *_Nonnull)error;
+- (int)request:(NSString *_Nonnull)url
+        resData:(ResponseData *_Nullable *_Nonnull)resData;
 
 @end

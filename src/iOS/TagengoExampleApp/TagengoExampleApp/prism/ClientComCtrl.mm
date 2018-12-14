@@ -131,7 +131,7 @@
     }
 }
 
-- (BOOL)request:(NSString *_Nonnull)url xmlData:(NSString *_Nonnull)xmlData binaryData:(NSData *_Nonnull)binaryData resData:(ResponseData *_Nullable *_Nonnull)resData error:(NSError *_Nullable *_Nonnull)error {
+- (int)request:(NSString *_Nonnull)url xmlData:(NSString *_Nonnull)xmlData binaryData:(NSData *_Nonnull)binaryData resData:(ResponseData *_Nullable *_Nonnull)resData {
     __block ResponseData *res = nil;
     __block NSError *err = nil;
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -144,16 +144,14 @@
     if (resData != nil) {
         *resData = res;
     }
-    if (error != nil) {
-        *error = err;
-    }
     if (err != nil) {
-        return false;
+        NSLog(@"%@",[err localizedDescription]);
+        return -1;
     }
-    return true;
+    return 0;
 }
 
-- (BOOL)request:(NSString *_Nonnull)url xmlData:(NSString *_Nonnull)xmlData resData:(ResponseData *_Nullable *_Nonnull)resData error:(NSError *_Nullable *_Nonnull)error {
+- (int)request:(NSString *_Nonnull)url xmlData:(NSString *_Nonnull)xmlData resData:(ResponseData *_Nullable *_Nonnull)resData {
     __block ResponseData *res = nil;
     __block NSError *err = nil;
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -167,16 +165,14 @@
     if (resData != nil) {
         *resData = res;
     }
-    if (error != nil) {
-        *error = err;
-    }
     if (err != nil) {
-        return false;
+        NSLog(@"%@",[err localizedDescription]);
+        return -1;
     }
-    return true;
+    return 0;
 }
 
-- (BOOL)request:(NSString *_Nonnull)url binaryData:(NSData *_Nonnull)binaryData resData:(ResponseData *_Nullable *_Nonnull)resData error:(NSError *_Nullable *_Nonnull)error {
+- (int)request:(NSString *_Nonnull)url binaryData:(NSData *_Nonnull)binaryData resData:(ResponseData *_Nullable *_Nonnull)resData {
     __block ResponseData *res = nil;
     __block NSError *err = nil;
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -189,16 +185,14 @@
     if (resData != nil) {
         *resData = res;
     }
-    if (error != nil) {
-        *error = err;
-    }
     if (err != nil) {
-        return false;
+        NSLog(@"%@",[err localizedDescription]);
+        return -1;
     }
-    return true;
+    return 0;
 }
 
-- (BOOL)request:(NSString *_Nonnull)url resData:(ResponseData *_Nullable *_Nonnull)resData error:(NSError *_Nullable *_Nonnull)error {
+- (int)request:(NSString *_Nonnull)url resData:(ResponseData *_Nullable *_Nonnull)resData {
     __block ResponseData *res = nil;
     __block NSError *err = nil;
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -211,13 +205,11 @@
     if (resData != nil) {
         *resData = res;
     }
-    if (error != nil) {
-        *error = err;
-    }
     if (err != nil) {
-        return false;
+        NSLog(@"%@",[err localizedDescription]);
+        return -1;
     }
-    return true;
+    return 0;
 }
 
 @end
