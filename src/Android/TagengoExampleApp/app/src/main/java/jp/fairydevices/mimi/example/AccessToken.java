@@ -26,7 +26,7 @@ class AccessToken {
         params.put("grant_type", "https://auth.mimi.fd.ai/grant_type/application_credentials");
         params.put("client_id", id);
         params.put("client_secret", secret);
-        params.put("scope", "https://apis.mimi.fd.ai/auth/nict-asr/http-api-service;https://apis.mimi.fd.ai/auth/nict-tra/http-api-service;https://apis.mimi.fd.ai/auth/nict-tts/http-api-service"); //NICT翻訳スコープ
+        params.put("scope", "https://apis.mimi.fd.ai/auth/nict-asr/websocket-api-service;https://apis.mimi.fd.ai/auth/nict-asr/http-api-service;https://apis.mimi.fd.ai/auth/nict-tra/http-api-service;https://apis.mimi.fd.ai/auth/nict-tts/http-api-service"); //NICT翻訳スコープ
 
         StringBuilder postData = new StringBuilder();
         for (Map.Entry<String, String> param : params.entrySet()) {

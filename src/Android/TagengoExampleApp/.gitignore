@@ -105,3 +105,6 @@ local.properties
 
 .idea/misc.xml
 .idea/runConfigurations.xml
+
+#
+app/src/main/jniLibs/armeabi-v7a/libmimiio_jni.so

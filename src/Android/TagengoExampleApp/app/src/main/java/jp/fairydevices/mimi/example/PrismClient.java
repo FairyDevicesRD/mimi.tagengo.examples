@@ -10,7 +10,6 @@ import android.widget.EditText;
 
 import org.xml.sax.SAXException;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -28,7 +27,7 @@ class PrismClient {
 
     private static final String ID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
     private static final String SECRET = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-    private static final String SRURL = "https://sandbox-sr.mimi.fd.ai";
+    private static final String SRURL = "wss://sandbox-sr.mimi.fd.ai";
     private static final String SSURL = "https://sandbox-ss.mimi.fd.ai/speech_synthesis";
     private static final String MTURL = "https://sandbox-mt.mimi.fd.ai/machine_translation";
 
