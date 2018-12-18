@@ -15,14 +15,14 @@ mimi.tagengo.examples/src/Android/TagengoExampleApp/app/src/main/jniLibs/armeabi
 private static final String ID = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 private static final String SECRET = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 ```
-2. AndroidStudioから `Run` -> `Run 'app'` と実行します。
+2. Android Studio から `Run` -> `Run 'app'` と実行します。
 
 ## ライセンスについて
 `libmimiio-android-19-armeabi-v7a-libc++.tar.gz` に含まれる `libmimiio_jni.so` は以下のソフトウェアを結合したものです。
 
-- libmimiio (Dec 12, 2018)
+- libmimiio (Dec 12, 2018)
 - OpenSSL (1.0.2q)
 - Poco (1.9.0)
 - FLAC （1.3.2）
 
-それぞれのライセンスついては同梱の LICENCE ファイルをご確認ください。
+それぞれのライセンスついては同梱の LICENCE ファイルをご確認ください。
