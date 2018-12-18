@@ -41,6 +41,10 @@ class XMLSimpleParser {
     String getSR_OUTSentence(String xml) throws XPathExpressionException, IOException, SAXException {
         InputSource is = new InputSource(new StringReader(xml));
         NodeList nodelist = (NodeList)expSRSentence.evaluate(dBuilder.parse(is), XPathConstants.NODESET);
-        return nodelist.item(0).getNodeValue();
+        if(nodelist.item(0) != null) {
+            return nodelist.item(0).getNodeValue();
+        } else {
+            return "";
+        }
     }
 }
