@@ -87,7 +87,7 @@ dispatch_queue_main_t _main_queue;
 
 - (IBAction)srTouchUp:(UIButton *)sender {
     NSLog(@"tap SR button");
-    NSString *SR_URL = @"wss://sandbox-sr.mimi.fd.ai";
+    NSString *SR_URL = @"https://sandbox-sr.mimi.fd.ai";
     if (isRecording) {
         [_srButton setTitle:@"SR" forState:UIControlStateNormal];
         isRecording = false;

@@ -17,7 +17,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-static NSString *const SR_URL = @"wss://sandbox-sr.mimi.fd.ai";
+static NSString *const SR_URL = @"https://sandbox-sr.mimi.fd.ai";
 
 @interface Recognizer : NSObject {
     NSString *_accessToken;

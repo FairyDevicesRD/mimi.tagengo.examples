@@ -61,7 +61,7 @@ class WebSocketRecognizer implements MimiIO.OnTxListener, MimiIO.OnRxListener {
     }
 
     protected void startRecognize(String url, RequestData requestData) throws MimiIOException {
-        if(!"wss://sandbox-sr.mimi.fd.ai".equals(url)) {
+        if(!"https://sandbox-sr.mimi.fd.ai".equals(url)) {
             throw new IllegalArgumentException("URL not supported.");
         }
         this.requestData = requestData;
