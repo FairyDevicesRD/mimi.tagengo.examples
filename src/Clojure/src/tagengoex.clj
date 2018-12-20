@@ -21,11 +21,11 @@
                   (auth/get-token appId appSecret))
         srclang "ja"
         dstlang "en"
-        infile  "audio.wav"
+        infile  "audio.raw"
         outfile "output.wav"]
     (println "trying to recognize text from audio data" infile "...")
     (some->> (read-file infile)
-             (sr/recognize sr-url token)
+             (sr/recognize sr-url token srclang)
              (p2 "->")
              (p1 (str "trying to translate it from " srclang " to " dstlang))
              (assoc {:source_lang srclang :target_lang dstlang} :text)
