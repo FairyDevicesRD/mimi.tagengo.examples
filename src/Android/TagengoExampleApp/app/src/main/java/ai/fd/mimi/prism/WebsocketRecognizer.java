@@ -72,6 +72,7 @@ class WebSocketRecognizer implements MimiIO.OnTxListener, MimiIO.OnRxListener {
         process.add("nict-asr");
         ArrayList<String> inputLanguage = new ArrayList<String>();
         inputLanguage.add(requestData.language);
+        requestHeaders.put("x-mimi-input-language", inputLanguage);
         requestHeaders.put("x-mimi-process", process);
 
         this.mio = new MimiIO(
