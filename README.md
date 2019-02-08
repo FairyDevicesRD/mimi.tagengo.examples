@@ -10,6 +10,7 @@
 - [Androidアプリ版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/Android)
 - [iOSアプリ版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/iOS)
 - [Clojure版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/Clojure)
+- [JavaScript版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/JavaScript)
 
 ## サンプルコードで使用しているオープンソースソフトウェアについて
 
