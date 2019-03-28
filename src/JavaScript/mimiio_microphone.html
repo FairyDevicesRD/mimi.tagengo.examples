@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>mimi WebSocket Sample</title>
+
+<table border="0">
+    <tr>
+        <td align="right">access-token :</td>
+        <td><input id="token" type="text"></td>
+    </tr>
+    <tr>
+        <td align="right">Content-Type :</td>
+        <td><input type="radio" name="content_type" value="audio/x-pcm;bit=16;rate=44100;channels=1" checked="checked">
+            audio/x-pcm;bit=16;rate=44100;channels=1
+        </td>
+    </tr>
+    <tr>
+        <td align="right"></td>
+        <td><input type="radio" name="content_type" value="audio/x-pcm;bit=16;rate=48000;channels=1">
+            audio/x-pcm;bit=16;rate=48000;channels=1
+        </td>
+    </tr>
+    <tr>
+        <td align="right">x-mimi-input-language :</td>
+        <td>
+            <input type="radio" name="input_lang" value="ja" checked="checked">日本語(ja)
+            <input type="radio" name="input_lang" value="en">英語(en)
+            <input type="radio" name="input_lang" value="es">スペイン語(es)
+            <input type="radio" name="input_lang" value="fr">フランス語(fr)
+            <input type="radio" name="input_lang" value="id">インドネシア語(id)
+            <input type="radio" name="input_lang" value="ko">韓国語(ko)
+            <input type="radio" name="input_lang" value="my">ミャンマー語(my)
+            <input type="radio" name="input_lang" value="th">タイ語(th)
+            <input type="radio" name="input_lang" value="vi">ベトナム語(vi)
+            <input type="radio" name="input_lang" value="zh">中国語(zh)
+        </td>
+    </tr>
+</table>
+<button type="button" id="button_rec_start">録音開始</button>
+<button type="button" id="button_rec_stop" disabled=disabled>録音停止</button>
+<hr>
+
+<ol id="donelist" reversed>
+</ol>
+
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="https://cdn.WebRTC-Experiment.com/MediaStreamRecorder.js"></script>
+
+<script>
+        "use strict";
+        const time_interval = 300;
+        let mediaRecorder = null;
+
+        const base_url = "wss://sandbox-sr.mimi.fd.ai";
+        const button_rec_start = document.getElementById("button_rec_start");
+        const button_rec_stop = document.getElementById("button_rec_stop");
+        const donelist = document.getElementById("donelist");
+        const mylog = message => {
+            const e = document.createElement("li");
+            e.appendChild(document.createTextNode(message));
+            donelist.insertBefore(e, donelist.firstChild);
+        };
+
+        const connect = url => {
+            const socket = new WebSocket(url);
+            socket.onopen = event => {
+                mylog("WebSocket open.");
+                navigator.mediaDevices.getUserMedia({audio: true}).then(stream => {
+                    mediaRecorder = new MediaStreamRecorder(stream);
+                    mediaRecorder.audioChannels = 1;
+                    mediaRecorder.mimeType = 'audio/pcm';
+                    mediaRecorder.ondataavailable = blob => {
+                        const now = new Date();
+                        mylog("Sending: microphone source (time : " +
+                              now.getHours().toString().padStart(2, "0") + ":" +
+                              now.getMinutes().toString().padStart(2, "0") + ":" +
+                              now.getSeconds().toString().padStart(2, "0") + "." +
+                              now.getMilliseconds().toString().padStart(4, "0") +
+                              " length: " + blob.size + "byte)");
+                        socket.send(blob);
+                    };
+                    mediaRecorder.onstop = () => {
+                        socket.send('{"command":"recog-break"}');
+                    };
+                    mediaRecorder.start(time_interval);
+                }).catch(e => {
+                    mylog('media error: ' + e);
+                });
+            };
+            socket.onmessage = event => {
+                mylog("WebSocket message: " + event.data);
+            };
+            socket.onerror = event => {
+                mylog("WebSocket error");
+            };
+            socket.onclose = event => {
+                mylog("WebSocket close. code: " + event.code + ", reason: " + event.reason);
+                button_rec_start.disabled = false;
+                button_rec_stop.disabled = true;
+            };
+        };
+
+        button_rec_start.onclick = event => {
+            const access_token = document.getElementById("token").value;
+            if (access_token == "") {
+                mylog("ERROR: Specify access token.");
+                throw new Error("Specify access token.");
+            }
+
+            const c_type_elements = document.getElementsByName("content_type");
+            let c_type = "";
+            for (let i = 0; i < c_type_elements.length; i++) {
+                if (c_type_elements[i].checked) {
+                    c_type = c_type_elements[i].value;
+                    break;
+                }
+            }
+
+            const input_lang_elements = document.getElementsByName("input_lang")
+            let input_lang = "";
+            for (let i = 0; i < input_lang_elements.length; i++) {
+                if (input_lang_elements[i].checked) {
+                    input_lang = input_lang_elements[i].value;
+                    break;
+                }
+            }
+            button_rec_start.disabled = true;
+            button_rec_stop.disabled = false;
+            const url = base_url + "/?process=nict-asr&access-token=" + encodeURIComponent(access_token) + "&input-language=" + encodeURIComponent(input_lang) + "&content-type=" + encodeURIComponent(c_type);
+            connect(url);
+        };
+
+        button_rec_stop.onclick = event => {
+            mediaRecorder.stop();
+            button_rec_stop.disabled = true;
+        }
+</script>
