@@ -1,4 +1,4 @@
-# Python sample client for mimi
+# Sample code in Python
 
 ## Preparation
 

@@ -6,6 +6,7 @@
 
 ## 公開しているサンプルコード
 
+- [Python版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/Python)
 - [Java版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/Java)
 - [Androidアプリ版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/Android)
 - [iOSアプリ版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/iOS)
@@ -24,9 +25,10 @@ iOSアプリおよびAndroidアプリでは、以下のオープンソースソ�
 
 ## 更新履歴
 
+- 2019-09-25 : Python版サンプルコードを追加しました
 - 2018-12-18 : Clojure版サンプルコードを追加しました
 - 2018-12-18 : Android版アプリの音声認識をWebSocketで通信するよう修正しました
-- 2018-12-12 : 「サンプルコードで利用しているオープンソースソフトウェアについて」の項目を追記しました
+- 2018-12-12 :「サンプルコードで利用しているオープンソースソフトウェアについて」の項目を追記しました
 - 2018-12-10 : iOS版サンプルアプリを公開しました
 - 2018-11-20 : Android・Java版のアップデート
 - 2018-11-13 : Android・Java版のサンプルコードを公開しました
