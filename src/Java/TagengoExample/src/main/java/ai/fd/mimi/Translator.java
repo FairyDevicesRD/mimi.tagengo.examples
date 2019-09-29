@@ -1,4 +1,4 @@
-package ai.fd.mimi.prism;
+package ai.fd.mimi;
 
 import com.google.gson.Gson;
 
@@ -10,22 +10,24 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Translator {
-    private String accessToken;
+    private String url = "";
+    private String accessToken = "";
 
-    protected Translator(String accessToken) {
+    public Translator(String url, String accessToken) {
+        this.url = url;
         this.accessToken = accessToken;
     }
 
-    protected ResponseData translate(String url, RequestData requestData) throws IOException {
+    public ResponseData translate(String text, String sourceLang, String targetLang) throws IOException {
         String result;
         HttpsURLConnection connection = null;
         URL host = new URL(url);
         connection = (HttpsURLConnection) host.openConnection();
 
         Map<String, String> params = new LinkedHashMap<>();
-        params.put("source_lang", requestData.sourceLanguage);
-        params.put("target_lang", requestData.targetLanguage);
-        params.put("text", requestData.sentence);
+        params.put("source_lang", sourceLang);
+        params.put("target_lang", targetLang);
+        params.put("text", text);
         StringBuilder postData = new StringBuilder();
         for (Map.Entry<String, String> param : params.entrySet()) {
             if (postData.length() != 0) postData.append('&');
@@ -59,11 +61,8 @@ public class Translator {
         // 結果 JSON をパース
         Gson gson = new Gson();
         String[] results = gson.fromJson(stringBuilder.toString(), String[].class);
-        result = String.join(" ", results);
-
-        XMLUtil util = new XMLUtil();
         ResponseData responseData = new ResponseData();
-        responseData.setXML(util.createResponseMT(requestData, result));
+        responseData.setJSON(String.join(" ", results));
         return responseData;
     }
 }

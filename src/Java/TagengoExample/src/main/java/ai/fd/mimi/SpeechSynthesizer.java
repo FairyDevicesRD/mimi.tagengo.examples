@@ -1,36 +1,46 @@
-package ai.fd.mimi.prism;
+package ai.fd.mimi;
 
 import javax.net.ssl.HttpsURLConnection;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.*;
-import java.net.*;
-import java.util.ArrayList;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class SpeechSynthesizer {
+    String url = "";
     String accessToken = "";
 
-    protected SpeechSynthesizer(String accessToken) {
+    public SpeechSynthesizer(String url, String accessToken) {
+        this.url = url;
         this.accessToken = accessToken;
     }
 
-    protected ResponseData synthesize(String url, RequestData requestData) throws IOException {
+    // required param
+    public ResponseData synthesize(String text, String lang) throws IOException {
+        return synthesize(text, "WAV", "Little", "unknown", "30", "yes", lang);
+    }
+
+    // optional param
+    public ResponseData synthesize(String text, String audioFormat, String audioEndian, String gender, String age, String native_, String lang) throws IOException {
         URL host = new URL(url);
         HttpsURLConnection connection = (HttpsURLConnection) host.openConnection();
 
         Map<String, String> params = new LinkedHashMap<>();
         //================================
         // required
-        params.put("text", requestData.sentence);
+        params.put("text", text);
         params.put("engine", "nict");
-        params.put("lang", requestData.language);
+        params.put("lang", lang);
         //================================
         // optional
-        params.put("audio_format", requestData.outputAudioFormatAudio);
-        params.put("audio_endian", requestData.outputAudioFormatEndian);
-        params.put("gender", requestData.voiceGender.toLowerCase());
-        params.put("age", requestData.voiceAge);
+        params.put("audio_format", audioFormat);
+        params.put("audio_endian", audioEndian);
+        params.put("gender", gender);
+        params.put("age", age);
+        params.put("native", native_);
         //================================
         StringBuilder postData = new StringBuilder();
         for (Map.Entry<String, String> param : params.entrySet()) {
@@ -62,12 +72,8 @@ public class SpeechSynthesizer {
         while ((readLen = is.read(readBuf, 0, readBuf.length)) != -1) {
             binaryData.write(readBuf, 0, readLen);
         }
-        XMLUtil util = new XMLUtil();
         ResponseData responseData = new ResponseData();
-        responseData.setXML(util.createResponseSS(requestData));
         responseData.setBinary(binaryData.toByteArray());
-
         return responseData;
     }
-
 }

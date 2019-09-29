@@ -1,18 +1,15 @@
-package ai.fd.mimi.prism;
-
-
-import java.util.ArrayList;
+package ai.fd.mimi;
 
 public class ResponseData {
     private String message = null;
     private byte[] binary = null;
 
-    public String getXML() {
+    public String getJSON() {
         return message;
     }
     public byte[] getBinary() { return binary; }
 
-    protected void setXML(String string) {
+    protected void setJSON(String string) {
         message = string;
     }
     protected void setBinary(byte[] binary){

@@ -1,21 +1,18 @@
-import ai.fd.mimi.prism.ClientComCtrl;
-import ai.fd.mimi.prism.ResponseData;
+import ai.fd.mimi.ResponseData;
+import ai.fd.mimi.SpeechRecognizer;
+import ai.fd.mimi.SpeechSynthesizer;
+import ai.fd.mimi.Translator;
 
 import com.google.gson.Gson;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.*;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -24,92 +21,32 @@ class AccessTokenResponse {
     String accessToken;
 }
 
-class XMLSimpleParser {
-    DocumentBuilderFactory dbFactory = null;
-    DocumentBuilder dBuilder = null;
-    Document doc = null;
-    XPathFactory xpFactory = null;
-    XPath xpath = null;
+public class Main implements SpeechRecognizer.OnMesseageListener{
+    private static final String clientID = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+    private static final String clientSecret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+    private static final String SRURL = "wss://sandbox-sr.mimi.fd.ai";
+    private static final String SSURL = "https://sandbox-mt.mimi.fd.ai/speech_synthesis";
+    private static final String MTURL = "https://sandbox-ss.mimi.fd.ai/machine_translation";
 
-    public XMLSimpleParser(String xml) throws IOException, SAXException, ParserConfigurationException {
-        dbFactory = DocumentBuilderFactory.newInstance();
-        dbFactory.setNamespaceAware(true);
-        dBuilder = dbFactory.newDocumentBuilder();
-        InputSource is = new InputSource(new StringReader(xml));
-        doc = dBuilder.parse(is);
-        xpFactory = XPathFactory.newInstance();
-        xpath = xpFactory.newXPath();
-    }
-
-    public String getMT_OUTSentence() throws XPathExpressionException {
-        XPathExpression exp = xpath.compile("/STML/MT_OUT/NBest[@Order='1']/s/text()");
-        NodeList nodelist = (NodeList) exp.evaluate(doc, XPathConstants.NODESET);
-        return nodelist.item(0).getNodeValue().trim();
-    }
-
-    public String getSR_OUTSentence() throws XPathExpressionException {
-        XPathExpression exp = xpath.compile("/STML/SR_OUT/NBest[@Order='1']/s/text()");
-        NodeList nodelist = (NodeList) exp.evaluate(doc, XPathConstants.NODESET);
-        return nodelist.item(0).getNodeValue().trim();
-    }
-}
-
-public class Main {
-    static final String clientID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-    static final String clientSecret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-    static final String SRURL = "https://sandbox-sr.mimi.fd.ai";
-    static final String SSURL = "https://sandbox-ss.mimi.fd.ai/speech_synthesis";
-    static final String MTURL = "https://sandbox-mt.mimi.fd.ai/machine_translation";
-
-    static final String SRRequestTemplate = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
-            "<STML UtteranceID=\"0\" Version=\"1\">\n" +
-            "<User ID=\"N/A\"/>\n" +
-            "<SR_IN Language=\"%s\">\n" +
-            "<Voice/>\n" +
-            "<InputAudioFormat Audio=\"RAW\" Endian=\"Little\" SamplingFrequency=\"16k\"/>\n" +
-            "<OutputTextFormat Form=\"SurfaceForm\"/>\n" +
-            "</SR_IN>\n" +
-            "</STML>";
-
-    static final String MTRequestTemplate = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
-            "<STML UtteranceID=\"0\" Version=\"1.0\">\n" +
-            "<User ID=\"N/A\"/>\n" +
-            "<MT_IN SourceLanguage=\"%s\" TargetLanguage=\"%s\">\n" +
-            "<InputTextFormat Form=\"SurfaceForm\"/>\n" +
-            "<OutputTextFormat Form=\"SurfaceForm\"/>\n" +
-            "<s>%s</s>\n" +
-            "</MT_IN>\n" +
-            "</STML>\n";
-    static final String SSRequestTemplate = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
-            "<STML UtteranceID=\"0\" Version=\"1\">\n" +
-            "<User ID=\"N/A\"/>\n" +
-            "<SS_IN Language=\"%s\">\n" +
-            "<Voice Age=\"30\" Gender=\"%s\"/>\n" +
-            "<OutputAudioFormat Audio=\"RAW\" Endian=\"Little\" SamplingFrequency=\"16k\"/>\n" +
-            "<InputTextFormat Form=\"SurfaceForm\"/>\n" +
-            "<s Delimiter=\" \">%s</s>\n" +
-            "</SS_IN>\n" +
-            "</STML>";
-
-    static String getAccessToken(String clientID, String clientSecret) throws IOException {
+    private static String getAccessToken() throws IOException {
         URL url = new URL("https://auth.mimi.fd.ai/v2/token");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         Map<String, String> params = new LinkedHashMap<>();
         params.put("grant_type", "https://auth.mimi.fd.ai/grant_type/application_credentials");
-        params.put("client_id", clientID);
-        params.put("client_secret", clientSecret);
-        params.put("scope", "https://apis.mimi.fd.ai/auth/nict-asr/http-api-service;" +
+        params.put("client_id", Main.clientID);
+        params.put("client_secret", Main.clientSecret);
+        params.put("scope", "https://apis.mimi.fd.ai/auth/nict-asr/websocket-api-service;" +
                 "https://apis.mimi.fd.ai/auth/nict-tra/http-api-service;" +
                 "https://apis.mimi.fd.ai/auth/nict-tts/http-api-service");
 
         StringBuilder postData = new StringBuilder();
         for (Map.Entry<String, String> param : params.entrySet()) {
             if (postData.length() != 0) postData.append('&');
-            postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+            postData.append(URLEncoder.encode(param.getKey(), StandardCharsets.UTF_8));
             postData.append('=');
-            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), StandardCharsets.UTF_8));
         }
-        byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+        byte[] postDataBytes = postData.toString().getBytes(StandardCharsets.UTF_8);
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
         connection.setDoOutput(true);
@@ -119,7 +56,7 @@ public class Main {
         if (status != HttpURLConnection.HTTP_OK) {
             throw new IOException("[error] code: " + status + " " + connection.getResponseMessage());
         }
-        Reader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
+        Reader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
         StringBuilder stringBuilder = new StringBuilder();
         for (int c; (c = in.read()) >= 0; ) {
             stringBuilder.append((char) c);
@@ -129,10 +66,10 @@ public class Main {
         return token.accessToken;
     }
 
-    static ArrayList<byte[]> loadRawFile(String fileName) throws IOException {
-        ArrayList<byte[]> binaryDataList = new ArrayList<byte[]>();
+    private static ArrayList<byte[]> loadRawFile(String fileName) throws IOException {
+        ArrayList<byte[]> binaryDataList = new ArrayList<>();
         FileInputStream fIn = new FileInputStream(new File(fileName));
-        int readLen = 0;
+        int readLen;
         byte[] readBuf = new byte[1024];
         while ((readLen = fIn.read(readBuf, 0, readBuf.length)) != -1) {
             byte[] data = new byte[readLen];
@@ -142,63 +79,89 @@ public class Main {
         return binaryDataList;
     }
 
-    static int writeRawFile(String fileName, byte[] data) throws IOException {
+    private static void writeRawFile(String fileName, byte[] data) throws IOException {
         FileOutputStream fOut = new FileOutputStream(new File(fileName));
         fOut.write(data);
         fOut.close();
-        return data.length;
     }
 
-    public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException, XPathExpressionException {
+    public static void main(String[] args) throws IOException {
         // 0. Set up ClientComCtrl
-        String accessToken = getAccessToken(clientID, clientSecret);
-        ClientComCtrl client = new ClientComCtrl(accessToken);
+        String accessToken = getAccessToken();
+        System.out.println("access token: " + accessToken);
 
+        Main main = new Main();
         ResponseData response;
-        String result;
 
-        // 1. SR
-
-        // Placeholder:
-        // %s: Language (ja, en, es, fr, id, ko, my, th, vi, zh)
-        final String SRRequest = String.format(SRRequestTemplate, "ja");
-
-        client.setTransferEncodingChunked(true); // 分割送信モード
-        client.request(SRURL, SRRequest); // XML リクエスト
-        ArrayList<byte[]> binaryDataList = loadRawFile("data/test.raw");
-        for (byte[] b : binaryDataList) {
-            client.request(SRURL, b); // 複数回の音声リクエスト
-        }
-        response = client.request(SRURL); // リクエスト終了、結果を得る
-        System.out.println("result: " + response.getXML());
-        result = new XMLSimpleParser(response.getXML()).getSR_OUTSentence();
-        System.out.println("result: " + result);
-
-        // 2. MT
+        // Machine Translation / 機械翻訳
+        Translator translator = new Translator(MTURL, accessToken);
 
         // Placeholders:
+        // %s: Sentence to translate
         // %s: SourceLanguage (ja, en, es, fr, id, ko, my, th, vi, zh)
         // %s: TargetLanguage (ja, en, es, fr, id, ko, my, th, vi, zh)
-        // %s: Sentence to translate
-        final String MTRequest = String.format(MTRequestTemplate, "ja", "en", result);
 
-        response = client.request(MTURL, MTRequest);
-        System.out.println("result: " + response.getXML());
-        result = new XMLSimpleParser(response.getXML()).getMT_OUTSentence();
-        System.out.println("result: " + result);
+        String before_text = "今日はいい天気ですね。";
+        response = translator.translate(before_text, "ja", "en");
+        System.out.println("[MT] input:  " + before_text);
+        System.out.println("[MT] output: " + response.getJSON());
 
-        // 3. SS
 
-        // Placeholders:
-        // %s: Language (ja, en, id, ko, my, th, vi, zh)
-        // %s: Gender (Male, Female)
-        // %s: Sentence to synthesize
-        final String SSRequest = String.format(SSRequestTemplate, "en", "Female", result);
+        // Speech Synthesis / 音声合成
+        SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(SSURL, accessToken);
 
-        response = client.request(SSURL, SSRequest);
-        System.out.println("result: " + response.getXML());
-        int dataLength = response.getBinary().length;
-        System.out.println("result binary: " + dataLength + "byte");
-        writeRawFile("data/ss.raw", response.getBinary());
+        // Placeholders: [required params]
+        // %s: text to synthesize
+        // %s: lang (ja, en, id, ko, my, th, vi, zh)
+        String input_text = "今日はいい天気ですね。";
+        response = speechSynthesizer.synthesize(input_text, "ja");
+
+        // Placeholders: [optional params]
+        // %s: text to synthesize
+        // %s: audio_format (WAV, RAW, ADPCM, Speex)
+        // %s: audio_endian (Little, Big)
+        // %s: gender (female, male, unknown)
+        // %s: age (30)
+        // %s: native (yes, no)
+        // %s: lang (ja, en, id, ko, my, th, vi, zh)
+        // speechSynthesizer.synthesize("今日はいい天気ですね", "WAV", "Little", "unknown", "30", "yes", "ja");
+
+        writeRawFile("data/ss.wav", response.getBinary());
+        System.out.println("[SS] input:  " + input_text);
+        System.out.println("[SS] output: data/ss.wav (" + response.getBinary().length + "bytes)");
+
+        // Speech Recognition / 音声認識
+        // Placeholder:
+        // %s: InputLanguage (ja, en, es, fr, id, ko, my, th, vi, zh)
+        SpeechRecognizer speechRecognizer = new SpeechRecognizer(SRURL, accessToken, "ja");
+        speechRecognizer.setOnMessageListener(main);
+
+        ArrayList<byte[]> binaryDataList = loadRawFile("data/test.raw");
+        for (byte[] b : binaryDataList) {
+            speechRecognizer.sendByteDate(b);
+        }
+        // 音声の終端を表明
+        speechRecognizer.sendRecogBreak();
+    }
+
+    // FIXME: 音声認識 コールバックメソッド
+    @Override
+    public void onOpen(short status) {
+        System.out.println("[SR] onOpen: " + status);
+    }
+
+    @Override
+    public void onMessage(String message) {
+        System.out.println("[SR] onMessage: " + message);
+    }
+
+    @Override
+    public void onClose(int code, String reason) {
+        System.out.println("[SR] onClose: " + code);
+    }
+
+    @Override
+    public void onError(Exception ex) {
+        System.out.println("[SR] onError: " + ex.getMessage());
     }
 }
