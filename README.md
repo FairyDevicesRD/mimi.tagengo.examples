@@ -8,7 +8,8 @@
 
 - [Python版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/Python)
 - [Java版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/Java)
-- [Androidアプリ版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/Android)
+- [Androidアプリ(Kotlin)版](https://github.com/FairyDevicesRD/mimi.tagengo.examples.android.kotlin)
+- [Androidアプリ(Java)版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/Android)
 - [iOSアプリ版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/iOS)
 - [Clojure版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/Clojure)
 - [JavaScript版](https://github.com/FairyDevicesRD/mimi.tagengo.examples/tree/master/src/JavaScript)
@@ -25,6 +26,7 @@ iOSアプリおよびAndroidアプリでは、以下のオープンソースソ�
 
 ## 更新履歴
 
+- 2019-10-01 : [Kotlin版のサンプルコード](https://github.com/FairyDevicesRD/mimi.tagengo.examples.android.kotlin)を追加しました（別リポジトリ）
 - 2019-09-29 : Java版のサンプルコードを更新しました
 - 2019-09-25 : Python版サンプルコードを追加しました
 - 2018-12-18 : Clojure版サンプルコードを追加しました
