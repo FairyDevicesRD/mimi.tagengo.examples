@@ -1,4 +1,4 @@
-# Swift sample client for mimi
+# Sample code in Swift
 
 ## Preparation
 
