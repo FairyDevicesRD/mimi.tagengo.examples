@@ -2,7 +2,7 @@
 
 ## Preparation
 
-use library [StarScream](https://github.com/daltoniam/Starscream) for ASR/main.swift
+use library [StarScream](https://github.com/daltoniam/Starscream) 3.1.1 for ASR/main.swift
 
 1. If you use command `ASR`, `TTS`, `TRA`, prepare the text file which has access token. Program reference only the first line.
 

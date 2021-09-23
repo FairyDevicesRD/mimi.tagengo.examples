@@ -21,7 +21,7 @@ class WsClient: WebSocketAdvancedDelegate {
         self.access_token = access_token
         self.audio_file = audio_file
         self.done = false
-        var urlRequest = URLRequest(url: URL(string: "wss://dev-service.mimi.fd.ai")!)
+        var urlRequest = URLRequest(url: URL(string: "wss://sandbox-sr.mimi.fd.ai")!)
 
         urlRequest.httpMethod = "GET"
         urlRequest.setValue("Bearer " + access_token, forHTTPHeaderField: "Authorization")

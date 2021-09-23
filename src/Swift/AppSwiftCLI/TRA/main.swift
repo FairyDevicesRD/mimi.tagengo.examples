@@ -17,15 +17,16 @@ func callTra (access_token: String, source_lang: String, text: String, target_la
     let semaphore = DispatchSemaphore(value: 0)
     let session = URLSession.shared
 
-    var urlComponents = URLComponents(string: "https://dev-tra.mimi.fd.ai/machine_translation")!
+    var urlComponents = URLComponents(string: "https://sandbox-mt.mimi.fd.ai/machine_translation")!
     urlComponents.queryItems = [
         URLQueryItem(name: "text", value: text.precomposedStringWithCanonicalMapping),
         URLQueryItem(name: "source_lang", value: source_lang),
         URLQueryItem(name: "target_lang", value: target_lang),
     ]
     var http_request = URLRequest(url: urlComponents.url!)
-    http_request.httpMethod = "GET"
+    http_request.httpMethod = "POST"
     http_request.setValue("Bearer " + access_token, forHTTPHeaderField: "Authorization")
+    http_request.httpBody = urlComponents.percentEncodedQuery?.data(using: .utf8)
     let task = session.dataTask(with: http_request) {
         data, response, error in
         print("start")

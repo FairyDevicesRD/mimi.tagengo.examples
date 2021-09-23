@@ -19,7 +19,7 @@ func getAccessToken (grant_type: String, client_id: String, client_secret: Strin
     let semaphore = DispatchSemaphore(value: 0)
     let session = URLSession.shared
 
-    var urlComponents = URLComponents(string: "https://dev-auth.mimi.fd.ai/v2/token")!
+    var urlComponents = URLComponents(string: "https://auth.mimi.fd.ai/v2/token")!
     urlComponents.queryItems = [
         URLQueryItem(name: "grant_type", value: grant_type),
         URLQueryItem(name: "client_id", value: client_id),
@@ -82,7 +82,7 @@ func run() {
     let arguments: [String] = CommandLine.arguments
 
     if arguments.count != 5 {
-        print("Usage: grant_typeclient_id client_secret scope")
+        print("Usage: grant_type client_id client_secret scope")
         exit(1)
     }
 

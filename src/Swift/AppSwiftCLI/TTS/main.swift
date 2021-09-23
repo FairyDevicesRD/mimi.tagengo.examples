@@ -13,16 +13,16 @@ func callTts (access_token: String, input_lang: String, text: String, filename: 
     let semaphore = DispatchSemaphore(value: 0)
     let session = URLSession.shared
 
-    var urlComponents = URLComponents(string: "https://dev-tts.mimi.fd.ai/speech_synthesis")!
+    var urlComponents = URLComponents(string: "https://sandbox-ss.mimi.fd.ai/speech_synthesis")!
     urlComponents.queryItems = [
         URLQueryItem(name: "text", value: text.precomposedStringWithCanonicalMapping),
         URLQueryItem(name: "lang", value: input_lang),
         URLQueryItem(name: "engine", value: "nict"),
     ]
     var http_request = URLRequest(url: urlComponents.url!)
-    http_request.httpMethod = "GET"
+    http_request.httpMethod = "POST"
     http_request.setValue("Bearer " + access_token, forHTTPHeaderField: "Authorization")
-
+    http_request.httpBody = urlComponents.percentEncodedQuery?.data(using: .utf8)
     let task = session.dataTask(with: http_request) {
         data, response, error in
 
