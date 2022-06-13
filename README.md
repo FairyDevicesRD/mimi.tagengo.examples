@@ -27,6 +27,7 @@ iOSアプリおよびAndroidアプリでは、以下のオープンソースソ�
 
 ## 更新履歴
 
+- 2022-06-13 : Python版およびJavaScript版のサンプルコードを更新しました
 - 2019-10-01 : [Kotlin版のサンプルコード](https://github.com/FairyDevicesRD/mimi.tagengo.examples.android.kotlin)を追加しました（別リポジトリ）
 - 2019-09-29 : Java版のサンプルコードを更新しました
 - 2019-09-25 : Python版サンプルコードを追加しました
