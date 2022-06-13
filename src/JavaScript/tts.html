@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <title>mimi TTS sample</title>
+</head>
+
+<body>
+    <table border="0">
+        <tr>
+            <td align="right">Application ID :</td>
+            <td>
+                <input type="text" name="application_id" id="application_id"></input>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">Application Secret :</td>
+            <td>
+                <input type="password" name="application_secret" id="application_secret"></input>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">Access token :</td>
+            <td><input type="text" id="access_token"></td>
+            <td><button id="button_token">アクセストークン発行</button></td>
+        </tr>
+    </table>
+    <hr>
+    <table border="0">
+        <tr>
+            <td align="right">language :</td>
+            <td>
+                <select name="lang" id="lang"></select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">gender :</td>
+            <td>
+                <select name="gender" id="gender"></select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">text :</td>
+            <td>
+                <textarea id="user_text" cols=100 rows=5 name="text"></textarea>
+            </td>
+        </tr>
+    </table>
+    <button type="button" id="button_tts">音声合成実行</button>
+    <hr>
+
+    <p id="error_text"></p>
+    <audio controls id="ss_audio">
+        <source src="">
+    </audio>
+    <ol id="donelist" reversed>
+    </ol>
+</body>
+
+</html>
+
+<script type="text/javascript" src="access_token.js"></script>
+<script type="text/javascript" src="select_option.js"></script>
+<script type="text/javascript" src="tts.js"></script>

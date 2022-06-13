@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <title>mimi TRA sample</title>
+</head>
+
+<body>
+    <table border="0">
+        <tr>
+            <td align="right">Application ID :</td>
+            <td>
+                <input type="text" name="application_id" id="application_id"></input>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">Application Secret :</td>
+            <td>
+                <input type="password" name="application_secret" id="application_secret"></input>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">Access token :</td>
+            <td><input type="text" id="access_token"></td>
+            <td><button id="button_token">アクセストークン発行</button></td>
+        </tr>
+    </table>
+    <hr>
+    <table border="0">
+        <tr>
+            <td align="right">source-language :</td>
+            <td>
+                <select name="src_lang" id="src_lang"></select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">target-language :</td>
+            <td>
+                <select name="target_lang" id="target_lang"></select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">text :</td>
+            <td>
+                <textarea id="user_text" cols=100 rows=5 name="text"></textarea>
+            </td>
+        </tr>
+    </table>
+    <button type="button" id="button_tra">機械翻訳実行</button>
+    <hr>
+    <ol id="donelist" reversed>
+    </ol>
+</body>
+
+</html>
+
+<script type="text/javascript" src="access_token.js"></script>
+<script type="text/javascript" src="select_option.js"></script>
+<script type="text/javascript" src="tra.js"></script>
