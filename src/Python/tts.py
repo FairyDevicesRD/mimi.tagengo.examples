@@ -28,15 +28,14 @@ def synthesize(token, input_lang, text, filename):
 if __name__ == '__main__':
     args = sys.argv
     if len(args) < 5:
-        print('Usage: python3 {} access_token input_lang input_text output_filename'.format(
-            args[0]))
+        print('Usage: python3 {} access_token input_lang input_text output_filename'.format(args[0]), file=sys.stderr)
         sys.exit(1)
     with open(args[1], 'r') as f:
         token = f.read().strip()
 
-    print('start speech synthesis...')
+    print('start speech synthesis...', file=sys.stderr)
     resp, status = synthesize(token, args[2], args[3], args[4])
     if status != 200:
-        print('ERROR: failed speech synthesis')
+        print('ERROR: failed speech synthesis', file=sys.stderr)
         sys.exit(1)
-    print('saved wav file: {}'.format(args[4]))
+    print('saved wav file: {}'.format(args[4]), file=sys.stderr)

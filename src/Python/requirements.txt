@@ -1,3 +1,6 @@
 asyncio
+# InputStream() in microphone.py requires numpy
+numpy
 requests
+sounddevice
 websockets
